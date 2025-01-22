@@ -1,4 +1,4 @@
-import sql from "./backend/postgres.js";
+import sql from "../postgres.js";
 
 async function createDbTables() {
 

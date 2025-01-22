@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import { Chessboard } from 'react-chessboard'
+import { Chessboard } from 'react-chessboard' // How cool!
 
 function App() {
   const [data, setData] = useState(null)
