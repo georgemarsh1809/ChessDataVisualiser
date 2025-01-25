@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import './App.css'
 import { Chessboard } from 'react-chessboard' // How cool!
+import Layout from './components/Layout'
 
 function App() {
   const [data, setData] = useState(null)
+  // const [tab, setTab] = useState < 'data' | 'dashboard' > ('dashboard'); // All possible states, with default set in brackets 
 
   async function getData() {
 
@@ -15,16 +17,14 @@ function App() {
 
   return (
     <>
-      <button onClick={getData}>
-        Hit me!
-      </button>
-      <p>{data ? data : "No data"}</p>
-      {/* <div style={{ minWidth: 300 }}>
-        <Chessboard />
-      </div> */}
+
+      <Layout>
+
+      </Layout>
 
     </>
   )
+
 }
 
 export default App
