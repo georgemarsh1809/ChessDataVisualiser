@@ -16,3 +16,6 @@
 - To start the backend:
 - Navigate to the backend folder (C:\Users\georg\Dev\projects\ChessDataViz\src\backend)
 - `node index.js`
+
+## Database Link📈
+- https://www.kaggle.com/datasets/liury123/chess-game-from-12-top-players

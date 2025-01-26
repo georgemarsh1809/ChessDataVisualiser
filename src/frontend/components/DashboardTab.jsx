@@ -1,4 +1,5 @@
 import React from 'react'
+import Graph from './Graph'
 
 export default function DashboardTab() {
   return (
@@ -37,7 +38,7 @@ export default function DashboardTab() {
       </div>
 
       <div className='graph-container'>
-
+        {/* Maybe create a graph scroller component? */}
       </div>
     </div>
   )
