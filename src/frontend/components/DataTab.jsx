@@ -1,9 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export default function DataTab() {
-  return (
-    <div>
-
-    </div>
-  )
+  return <div>data tab</div>;
 }
