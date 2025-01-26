@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import { Chessboard } from 'react-chessboard' // How cool!
 import Layout from './components/Layout'
+import DashboardTab from './components/DashboardTab'
 
 function App() {
   const [data, setData] = useState(null)
@@ -19,7 +20,7 @@ function App() {
     <>
 
       <Layout>
-
+        <DashboardTab />
       </Layout>
 
     </>

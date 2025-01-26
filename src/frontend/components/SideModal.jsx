@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Modal() {
+export default function SideModal() {
   return (
     <div>
-      
+
     </div>
   )
 }
