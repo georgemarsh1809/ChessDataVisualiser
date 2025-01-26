@@ -17,142 +17,7 @@ body {
   margin-left: 25px;
 }
 
-
-/* Header Styles*/
-
-.header-container {
-  display: flex;
-  min-width: 100vh;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 80px;
-  background-color: rgb(245, 245, 245);
-  margin-right: -15px;
-  margin-left: -20px;
-
-}
-
-
-.nav-container {
-  display: flex;
-  align-items: center;
-  gap: 1.3rem;
-  padding-left: 35px;
-  box-sizing: border-box;
-}
-
-.nav-container button p {
-  font-size: 20px;
-  font-weight: 600;
-}
-
-.nav-container i {
-  font-size: 30px;
-  padding-right: 15px;
-}
-
-.data-tab-button {
-  border: none;
-  background: none;
-  padding-top: 12px;
-  min-width: 80px;
-  border-bottom: 2px inset transparent;
-  transition-duration: 200ms;
-}
-
-.data-tab-button:hover {
-  border-bottom: 2px inset rgb(59, 16, 15);
-  transition-duration: 300ms;
-  cursor: pointer;
-}
-
-.dashboard-tab-button {
-  border: none;
-  background: none;
-  min-width: 130px;
-  padding-top: 12px;
-  border-bottom: 2px inset transparent;
-  transition-duration: 200ms;
-}
-
-.dashboard-tab-button:hover {
-  border-bottom: 2px inset rgb(59, 16, 15);
-  transition-duration: 400ms;
-  cursor: pointer;
-}
-
-.right-header {
-  display: flex;
-  align-items: center;
-  gap: 1.8rem;
-  padding-right: 30px;
-}
-
-.import-button {
-  display: flex;
-  height: 40px;
-  min-width: 110px;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(123, 70, 46);
-  border: none;
-  border-radius: 7px;
-  border: solid 2.5px transparent;
-  color: rgb(245, 245, 245);
-  font-size: 18px;
-  font-weight: 400;
-  transition-duration: 300ms;
-}
-
-.import-button:hover {
-  transition-duration: 300ms;
-  cursor: pointer;
-  background-color: rgb(96, 54, 34);
-  /* filter: drop-shadow(0px 0px 4px rgba(36, 36, 36, 0.5)); */
-
-}
-
-.settings-button {
-  border: none;
-  background: none;
-}
-
-
-.settings-button-icon {
-  font-size: 35px;
-  color: rgb(128, 122, 117);
-  transition-duration: 300ms;
-}
-
-.settings-button-icon:hover {
-  cursor: pointer;
-  color: rgb(87, 85, 83);
-  transition-duration: 200ms;
-}
-
-.profile-button {
-  display: inline-flex;
-  height: 45px;
-  width: 45px;
-  border: none;
-  border-radius: 50%;
-  background-color: rgb(59, 16, 15);
-  font-size: 20px;
-  color: rgb(245, 245, 245);
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  font-size: 20px;
-  color: rgb(245, 245, 245);
-  transition-duration: 200ms;
-}
-
-.profile-button:hover {
-  cursor: pointer;
-  background-color: rgb(40, 10, 9);
-  transition-duration: 300ms;
-  /* filter: drop-shadow(0px 0px 5px rgba(36, 36, 36, 0.5)); */
-}
+/* Everything below here should be in seperate files */
 
 /* Dashboard Styles*/
 
@@ -164,7 +29,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
 }
 
 .dashboard-header-title {
@@ -209,7 +73,6 @@ body {
   justify-content: center;
   border-radius: 50%;
   transition-duration: 200ms;
-
 }
 
 .menu-button:hover {
@@ -230,14 +93,12 @@ body {
   border: none;
   border-radius: 7px;
   transition-duration: 150ms;
-
 }
 
 .filter-button:hover {
   cursor: pointer;
   transition-duration: 150ms;
   background: rgb(245, 245, 245);
-
 }
 
 .date-range-button {
@@ -259,7 +120,6 @@ body {
   cursor: pointer;
   transition-duration: 150ms;
   color: rgb(208, 208, 208);
-
 }
 
 .download-button {
