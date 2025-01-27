@@ -3,14 +3,16 @@ import styles from "./Layout.module.css";
 import { Outlet, NavLink } from "react-router";
 
 export const Layout = () => {
+
+
   return (
     <>
       <header>
         <div className={styles.headerContainer}>
           <nav className={styles.navContainer}>
             <i className="fa-regular fa-chess-queen"></i>
-            <NavLink to="/">
-              <button className={styles.dashboardTabButton}>
+            <NavLink to="/" >
+              <button className={styles.dashboardTabButton} >
                 <p>Dashboard</p>
               </button>
             </NavLink>

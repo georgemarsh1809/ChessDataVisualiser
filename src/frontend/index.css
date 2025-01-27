@@ -1,20 +1,48 @@
 :root {
-  display: flex;
-  flex-direction: column;
-  min-width: 100vh;
-  width: 100%;
-  min-height: 100vh;
-  margin-top: -10px;
-  margin-left: -10px;
+  /* Color Variables*/
+
+  --gray1: #F5F5F5;
+  --gray2: #E7E7E7;
+  --gray3: #CACACA;
+  --gray4: #807A75;
+  --gray5: #2C2727;
+
+  --primary: #3B100F;
+  --primary-accent: #70371C;
+  --secondary: #A48061;
+  --secondary-accent: #CDB592;
 }
 
 * {
   font-family: "IBM Plex Sans Condensed", "Helvetica Neue", Arial, sans-serif;
 }
 
+header {
+  display: flex;
+  top: 0;
+  position: sticky;
+  flex-direction: column;
+  min-width: 100vh;
+  width: 100vw;
+  z-index: 10;
+}
+
+html {
+  /* These 2 lines ensure scrollbar is hidden, 
+  but user can still scroll */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
 body {
-  overflow: hidden;
-  margin-left: 25px;
+  height: 100vh;
+  background: var(--gray3);
+  width: calc(100vw-10px);
+  margin: 0;
+}
+
+.bold-text {
+  font-weight: 600;
 }
 
 /* Everything below here should be in seperate files */
@@ -22,16 +50,39 @@ body {
 /* Dashboard Styles*/
 
 .dashboard-tab-container {
-  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+}
+
+.data-tab-container {
+  display: flex;
+  flex-direction: column;
+  top: 0;
 }
 
 .dashboard-header {
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.data-header {
+  padding-top: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .dashboard-header-title {
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  gap: 1rem;
+}
+
+.data-header-title {
   display: flex;
   align-items: center;
   padding-left: 15px;
@@ -53,7 +104,23 @@ body {
   font-size: 18px;
 }
 
+.data-header-title-text {
+  display: flex;
+  align-items: baseline;
+}
+
+.data-header-title-text p {
+  font-size: 18px;
+}
+
 .dashboard-header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding-right: 15px;
+}
+
+.data-header-buttons {
   display: flex;
   align-items: center;
   gap: 1.2rem;
@@ -76,7 +143,7 @@ body {
 }
 
 .menu-button:hover {
-  background: rgb(245, 245, 245);
+  background: var(--gray1);
   transition-duration: 200ms;
   cursor: pointer;
 }
@@ -98,7 +165,7 @@ body {
 .filter-button:hover {
   cursor: pointer;
   transition-duration: 150ms;
-  background: rgb(245, 245, 245);
+  background: var(--gray1);
 }
 
 .date-range-button {
@@ -109,8 +176,8 @@ body {
   padding: 10px;
   font-size: 15px;
   font-weight: 500;
-  background-color: rgb(59, 16, 15);
-  color: rgb(245, 245, 245);
+  background-color: var(--primary);
+  color: var(--gray1);
   border: none;
   border-radius: 7px;
   transition-duration: 150ms;
@@ -119,7 +186,7 @@ body {
 .date-range-button:hover {
   cursor: pointer;
   transition-duration: 150ms;
-  color: rgb(208, 208, 208);
+  color: var(--gray3);
 }
 
 .download-button {
@@ -140,7 +207,7 @@ body {
 .download-button:hover {
   cursor: pointer;
   transition-duration: 150ms;
-  background: rgb(245, 245, 245);
+  background: var(--gray1);
 }
 
 .share-button {
@@ -161,14 +228,208 @@ body {
 .share-button:hover {
   cursor: pointer;
   transition-duration: 150ms;
-  background: rgb(245, 245, 245);
+  background: var(--gray1);
 }
 
 .graph-container {
   display: grid;
-  background: rgb(202, 202, 202);
-  width: 100%;
+
+  width: 100vw;
   height: 100vh;
   margin-top: 10px;
   border-radius: 5px;
+}
+
+/* Side Modal Styles - move to a module */
+
+.side-modal-container {
+  flex-direction: column;
+  position: absolute;
+  z-index: 11;
+  padding-left: 1.3rem;
+  padding-right: 0.8rem;
+  height: 100%;
+  width: 12.5rem;
+  background: white;
+  animation: fadein .2s;
+  box-shadow: 5px 0px 3px -2px #aeaeae;
+}
+
+.side-modal-container-closed {
+  animation: fadeout 1s;
+
+}
+
+@keyframes fadein {
+  from {
+    left: -17rem;
+  }
+
+  to {
+    left: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    left: 0;
+  }
+
+  to {
+    left: -17rem;
+  }
+}
+
+
+.side-modal-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  background: white;
+}
+
+.side-modal-contents {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+
+}
+
+.top-players-section {
+  display: flex;
+  flex-direction: column;
+
+}
+
+/* Player Profile Card styles*/
+.player-profile-card {
+  display: flex;
+  border: none;
+  background: none;
+  width: fit-content;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  border-radius: 7px;
+  font-size: 14px;
+
+
+}
+
+.player-profile-card:hover {
+  cursor: pointer;
+  background-color: var(--gray2);
+  text-decoration: underline;
+}
+
+.your-games-header-bar {
+  display: flex;
+  background: var(--gray1);
+  border-radius: 3px;
+  padding: 0.3rem;
+  margin-left: 15px;
+  margin-right: 15px;
+  padding-left: 1rem;
+  font-weight: 500;
+}
+
+.game-data-container {
+  display: flex;
+  position: relative;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.game-list-container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding-top: 10px;
+  border-right: solid 1px var(--gray4);
+}
+
+.board-view-container {
+  flex: 1;
+  border-left: solid 1px var(--gray4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.game-title-container {
+  display: flex;
+  margin-top: 10px;
+  width: 500px;
+  font-size: 18px;
+  justify-content: left;
+  align-items: flex-start;
+
+}
+
+.chess-board-container {
+  display: flex;
+  width: 500px;
+  height: 500px;
+  border: solid 4px var(--gray4);
+  box-shadow: 0px 0px 5px 3px #aeaeae;
+}
+
+.move-counter-container {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  ;
+}
+
+.prev-move-button {
+  width: 25px;
+  height: 25px;
+}
+
+.prev-move-button:hover {
+  cursor: pointer;
+}
+
+.next-move-button {
+  width: 25px;
+  height: 25px;
+}
+
+.next-move-button:hover {
+  cursor: pointer;
+}
+
+.move-counter {
+  padding: 5px;
+}
+
+.game-card {
+  display: flex;
+  justify-content: baseline;
+  margin: 4px;
+  margin-left: 20px;
+  border: solid 2px transparent;
+  background: none;
+  font-size: 15px;
+  font-weight: 400;
+  padding: 10px;
+  width: fit-content;
+}
+
+.game-card:hover {
+  border-bottom: solid 2px gray;
+  border-top: solid 2px var(--gray4);
+  cursor: pointer;
+}
+
+.game-card:hover i {
+  color: #00a6a6;
+  cursor: pointer;
+}
+
+.open-game-button {
+  background: none;
+  border: none;
 }

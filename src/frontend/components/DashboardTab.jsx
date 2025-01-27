@@ -1,12 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Graph from './Graph'
+import SideModal from './SideModal'
 
 export default function DashboardTab() {
+
+  const [showSideModal, setShowSideModal] = useState(false)
+
+  function handleSideModal() {
+    setShowSideModal(!showSideModal)
+  }
+
   return (
     <div className='dashboard-tab-container'>
+      {showSideModal && (
+        <SideModal handleSideModal={handleSideModal} showSideModal={showSideModal} />
+      )}
       <div className='dashboard-header'>
         <div className='dashboard-header-title'>
-          <button className='menu-button'>
+          <button className='menu-button' onClick={handleSideModal}>
             <i className="fa-solid fa-chevron-right"></i>
           </button>
           <div className='dashboard-header-title-text'>
@@ -37,9 +48,9 @@ export default function DashboardTab() {
         </div>
       </div>
 
-      <div className='graph-container'>
-        {/* Maybe create a graph scroller component? */}
-      </div>
+      {/* <div className='graph-container'>
+        {/* Maybe create a graph scroller component? </div>  */}
+
     </div>
   )
 }
