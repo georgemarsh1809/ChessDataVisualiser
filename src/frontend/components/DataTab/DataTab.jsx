@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { Chessboard } from "react-chessboard"; // How cool!
+import { Chessboard } from "react-chessboard";
 import { Chess } from 'chess.js';
 import { SideModal } from '../common/SideModal/SideModal';
 import { GameCard } from './components/GameCard/GameCard';
-import { useStore } from '../../store';
+import { useStore } from '../../stateManagement/store';
 import styles from './DataTab.module.css'
+import commonStyles from '../common/CommonStyles.module.css';
 
 export const DataTab = () => {
 
@@ -20,16 +21,16 @@ export const DataTab = () => {
   ]
 
   return (
-    <div className='data-tab-container'>
+    <div className={commonStyles.tabContainer}>
 
       <SideModal />
 
-      <div className='data-header'>
-        <div className='data-header-title'>
-          <button className='menu-button' onClick={toggleSideModal}>
+      <div className={commonStyles.tabHeader}>
+        <div className={commonStyles.tabHeaderTitle}>
+          <button className={commonStyles.menuButton} onClick={toggleSideModal}>
             <i className="fa-solid fa-chevron-right"></i>
           </button>
-          <div className='data-header-title-text'>
+          <div className={commonStyles.tabHeaderTitleText}>
             <h2>
               George's Data |
             </h2>
@@ -38,62 +39,60 @@ export const DataTab = () => {
             </p>
           </div>
         </div>
-        <div className='data-header-buttons'>
-          <button className='filter-button'>
+        <div className={commonStyles.tabHeaderButtons}>
+          <button className={commonStyles.filterButton}>
             <i className="fa-solid fa-filter"></i>
-            <p className='filter-button-text'>Add Filter</p>
+            <p>Add Filter</p>
           </button>
-          <button className='date-range-button'>
+          <button className={commonStyles.dateRangeButton}>
             <i className="fa-solid fa-calendar-days"></i>
-            <p className='date-range-button-text'>Date Range</p>
+            <p>Date Range</p>
             <i className="fa-solid fa-chevron-down"></i>
           </button>
-          <button className='download-button'>
+          <button className={commonStyles.downloadButton}>
             <i className="fa-solid fa-download"></i>
           </button>
-          <button className='share-button'>
+          <button className={commonStyles.shareButton}>
             <i className="fa-solid fa-share-from-square"></i>
           </button>
         </div>
       </div>
-      <div className='your-games-header-bar'>
+      <div className={styles.yourGamesTitleBar}>
         Your Games
       </div>
-      <div className='game-data-container'>
-        <div className='game-list-container'>
+      <div className={styles.gameDataContainer}>
+        <div className={styles.gameListContainer}>
           {fakeData.map((fakeGame, fakeGameIndex) => {
             return (
               <GameCard key={fakeGameIndex}>
                 {fakeGame}
-                <button className='open-game-button'>
+                <button className={styles.openGameButton}>
                   <i className="fa-solid fa-up-right-from-square"></i>
                 </button>
               </GameCard>
             )
           })}
         </div>
-        <div className='board-view-container'>
-          <div className='game-title-container'>
-            <p className='bold-text'>Game 006&nbsp;|</p>
+        <div className={styles.boardViewContainer}>
+          <div className={styles.gameTitleContainer}>
+            <p className={commonStyles.boldText}>Game 006&nbsp;|</p>
             <p>&nbsp;Hikaru Nakamura, London, 2021</p>
           </div>
-          <div className='chess-board-container'>
+          <div className={styles.chessBoardContainer}>
             <Chessboard>
 
             </Chessboard>
           </div>
-          <div className='move-counter-container'>
-            <button className='prev-move-button'>
+          <div className={styles.moveCounterContainer}>
+            <button className={styles.prevMoveButton}>
               <i className="fa-solid fa-chevron-left" />
             </button>
-            <p className='move-counter'>Move: 0</p>
-            <button className='next-move-button'>
+            <p className={styles.moveCounter}>Move: 0</p>
+            <button className={styles.nextMoveButton}>
               <i className="fa-solid fa-chevron-right" />
             </button>
           </div>
-
         </div>
-
       </div>
     </div>
   )

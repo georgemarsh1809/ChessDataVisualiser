@@ -1,6 +1,8 @@
 import React from 'react'
 import { PlayerProfileCard } from './components/PlayerProfileCard/PlayerProfileCard'
-import { useStore } from '../../../store';
+import { useStore } from '../../../stateManagement/store';
+import commonStyles from '../../common/CommonStyles.module.css'
+import styles from './SideModal.module.css'
 
 export const SideModal = () => {
 
@@ -11,14 +13,14 @@ export const SideModal = () => {
     'Paul Morphy', 'Hikarua Nakamura', 'Judit Polgár', 'Mikhail Tal']
 
   return (
-    <div className={`side-modal-container ${showSideModal ? 'side-modal-container-open' : "side-modal-container-closed"}`}>
-      <div className='side-modal-header'>
+    <div className={`${styles.sideModalContainer} ${showSideModal ? styles.sideModalContainerOpen : ""}`}>
+      <div className={styles.sideModalHeader}>
         <h2>Choose Profile</h2>
-        <button className='menu-button' onClick={toggleSideModal}>
+        <button className={commonStyles.menuButton} onClick={toggleSideModal}>
           <i className="fa-solid fa-chevron-left"></i>
         </button>
       </div>
-      <div className='top-players-section'>
+      <div className={styles.topPlayersSection}>
         {playerList.map((player, playerIndex) => {
           return (
             <PlayerProfileCard key={playerIndex} onClick={() => {

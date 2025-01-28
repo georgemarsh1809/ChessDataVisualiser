@@ -1,0 +1,34 @@
+.side-modal-container {
+    flex-direction: column;
+    position: absolute;
+    z-index: 11;
+    left: -17rem;
+    padding-left: 1.3rem;
+    padding-right: 0.8rem;
+    height: 100%;
+    width: 12.4rem;
+    background: white;
+    box-shadow: 5px 0px 3px -2px #aeaeae;
+    transition: left 0.2s;
+}
+
+.side-modal-container-open {
+    left: 0
+}
+
+.side-modal-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.9rem;
+    margin-bottom: 1rem;
+    background: white;
+    border-bottom: solid 1px var(--gray3);
+}
+
+.side-modal-contents {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+
+}

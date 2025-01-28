@@ -1,35 +1,87 @@
-.data-tab-container {
+.your-games-title-bar {
+    display: flex;
+    background: var(--gray1);
+    border-radius: 3px;
+    padding: 0.3rem;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding-left: 1rem;
+    font-weight: 500;
+}
+
+.game-data-container {
+    display: flex;
+    position: relative;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.game-list-container {
     display: flex;
     flex-direction: column;
-    top: 0;
-}
-
-.data-header {
+    width: 50%;
     padding-top: 10px;
+    border-right: solid 1px var(--gray4);
+}
+
+.open-game-button {
+    background: none;
+    border: none;
+}
+
+.board-view-container {
+    flex: 1;
+    border-left: solid 1px var(--gray4);
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    justify-content: space-around;
 }
 
-.data-header-title {
+.game-title-container {
     display: flex;
-    align-items: center;
-    padding-left: 15px;
-    gap: 1rem;
-}
-
-.data-header-title-text {
-    display: flex;
-    align-items: baseline;
-}
-
-.data-header-title-text p {
+    margin-top: 10px;
+    width: 500px;
     font-size: 18px;
+    justify-content: left;
+    align-items: flex-start;
+
 }
 
-.data-header-buttons {
+.chess-board-container {
+    display: flex;
+    width: 500px;
+    height: 500px;
+    border: solid 4px var(--gray4);
+    box-shadow: 0px 0px 5px 3px #aeaeae;
+}
+
+.move-counter-container {
+    padding: 10px;
     display: flex;
     align-items: center;
-    gap: 1.2rem;
-    padding-right: 15px;
+    gap: 0.2rem;
+    ;
+}
+
+.prev-move-button {
+    width: 25px;
+    height: 25px;
+}
+
+.prev-move-button:hover {
+    cursor: pointer;
+}
+
+.next-move-button {
+    width: 25px;
+    height: 25px;
+}
+
+.next-move-button:hover {
+    cursor: pointer;
+}
+
+.move-counter {
+    padding: 5px;
 }

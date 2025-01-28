@@ -1,20 +1,22 @@
 import React, { useState } from 'react'
 import { SideModal } from '../common/SideModal/SideModal'
-import { useStore } from '../../store'
+import { useStore } from '../../stateManagement/store'
+import commonStyles from '../common/CommonStyles.module.css'
+import styles from './DashboardTab.module.css'
 
 
 export const DashboardTab = () => {
-  const { showSideModal, toggleSideModal } = useStore()
+  const { toggleSideModal } = useStore()
 
   return (
-    <div className='dashboard-tab-container'>
+    <div className={commonStyles.tabContainer}>
       <SideModal />
-      <div className='dashboard-header'>
-        <div className='dashboard-header-title'>
-          <button className='menu-button' onClick={toggleSideModal}>
+      <div className={commonStyles.tabHeader}>
+        <div className={commonStyles.tabHeaderTitle}>
+          <button className={commonStyles.menuButton} onClick={toggleSideModal}>
             <i className="fa-solid fa-chevron-right"></i>
           </button>
-          <div className='dashboard-header-title-text'>
+          <div className={commonStyles.tabHeaderTitleText}>
             <h2>
               George's Dashboard |
             </h2>
@@ -23,20 +25,20 @@ export const DashboardTab = () => {
             </p>
           </div>
         </div>
-        <div className='dashboard-header-buttons'>
-          <button className='filter-button'>
+        <div className={commonStyles.tabHeaderButtons}>
+          <button className={commonStyles.filterButton}>
             <i className="fa-solid fa-filter"></i>
-            <p className='filter-button-text'>Add Filter</p>
+            <p>Add Filter</p>
           </button>
-          <button className='date-range-button'>
+          <button className={commonStyles.dateRangeButton}>
             <i className="fa-solid fa-calendar-days"></i>
-            <p className='date-range-button-text'>Date Range</p>
+            <p>Date Range</p>
             <i className="fa-solid fa-chevron-down"></i>
           </button>
-          <button className='download-button'>
+          <button className={commonStyles.downloadButton}>
             <i className="fa-solid fa-download"></i>
           </button>
-          <button className='share-button'>
+          <button className={commonStyles.shareButton}>
             <i className="fa-solid fa-share-from-square"></i>
           </button>
         </div>

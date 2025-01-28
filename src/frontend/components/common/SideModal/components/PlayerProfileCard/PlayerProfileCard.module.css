@@ -1,0 +1,17 @@
+.player-profile-card {
+    display: flex;
+    border: none;
+    background: none;
+    width: fit-content;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    margin: 0.3rem;
+    border-radius: 7px;
+    font-size: 14px;
+}
+
+.player-profile-card:hover {
+    cursor: pointer;
+    background-color: var(--gray2);
+    text-decoration: underline;
+}

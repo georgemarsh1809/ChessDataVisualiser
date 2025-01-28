@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Layout.module.css";
 import { Outlet, NavLink } from "react-router";
-import { useStore } from "../../store";
+import { useStore } from "../../stateManagement/store";
 
 export const Layout = () => {
 
