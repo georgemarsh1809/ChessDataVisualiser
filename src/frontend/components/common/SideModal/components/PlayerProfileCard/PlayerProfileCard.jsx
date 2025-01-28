@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function PlayerProfileCard(props) {
+export const PlayerProfileCard = (props) => {
 
     const { children } = props
 

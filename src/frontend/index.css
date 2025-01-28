@@ -55,20 +55,7 @@ body {
   top: 0;
 }
 
-.data-tab-container {
-  display: flex;
-  flex-direction: column;
-  top: 0;
-}
-
 .dashboard-header {
-  padding-top: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.data-header {
   padding-top: 10px;
   display: flex;
   justify-content: space-between;
@@ -82,19 +69,6 @@ body {
   gap: 1rem;
 }
 
-.data-header-title {
-  display: flex;
-  align-items: center;
-  padding-left: 15px;
-  gap: 1rem;
-}
-
-.menu-button-container {
-  background: none;
-  border: none;
-  font-size: 20px;
-}
-
 .dashboard-header-title-text {
   display: flex;
   align-items: baseline;
@@ -102,6 +76,35 @@ body {
 
 .dashboard-header-title-text p {
   font-size: 18px;
+}
+
+.dashboard-header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding-right: 15px;
+}
+
+/* Data Tab Styles */
+
+.data-tab-container {
+  display: flex;
+  flex-direction: column;
+  top: 0;
+}
+
+.data-header {
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.data-header-title {
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  gap: 1rem;
 }
 
 .data-header-title-text {
@@ -113,13 +116,6 @@ body {
   font-size: 18px;
 }
 
-.dashboard-header-buttons {
-  display: flex;
-  align-items: center;
-  gap: 1.2rem;
-  padding-right: 15px;
-}
-
 .data-header-buttons {
   display: flex;
   align-items: center;
@@ -127,9 +123,21 @@ body {
   padding-right: 15px;
 }
 
-.menu-button {
+
+
+
+.menu-button-container {
+  /* common style */
   background: none;
   border: none;
+  font-size: 20px;
+}
+
+.menu-button {
+  /* common style */
+  background: none;
+  border: none;
+  color: var(--gray4);
   font-size: 20px;
   display: inline-flex;
   height: 35px;
@@ -143,12 +151,15 @@ body {
 }
 
 .menu-button:hover {
-  background: var(--gray1);
+  /* common style */
+  background: var(--gray2);
+  color: var(--gray5);
   transition-duration: 200ms;
   cursor: pointer;
 }
 
 .filter-button {
+  /* common style */
   display: flex;
   align-items: center;
   max-height: 40px;
@@ -163,12 +174,14 @@ body {
 }
 
 .filter-button:hover {
+  /* common style */
   cursor: pointer;
   transition-duration: 150ms;
   background: var(--gray1);
 }
 
 .date-range-button {
+  /* common style */
   display: flex;
   align-items: center;
   max-height: 40px;
@@ -184,12 +197,14 @@ body {
 }
 
 .date-range-button:hover {
+  /* common style */
   cursor: pointer;
   transition-duration: 150ms;
   color: var(--gray3);
 }
 
 .download-button {
+  /* common style */
   background: none;
   border: none;
   font-size: 18px;
@@ -205,12 +220,14 @@ body {
 }
 
 .download-button:hover {
+  /* common style */
   cursor: pointer;
   transition-duration: 150ms;
   background: var(--gray1);
 }
 
 .share-button {
+  /* common style */
   background: none;
   border: none;
   font-size: 18px;
@@ -226,19 +243,13 @@ body {
 }
 
 .share-button:hover {
+  /* common style */
   cursor: pointer;
   transition-duration: 150ms;
   background: var(--gray1);
 }
 
-.graph-container {
-  display: grid;
 
-  width: 100vw;
-  height: 100vh;
-  margin-top: 10px;
-  border-radius: 5px;
-}
 
 /* Side Modal Styles - move to a module */
 
@@ -246,47 +257,27 @@ body {
   flex-direction: column;
   position: absolute;
   z-index: 11;
+  left: -17rem;
   padding-left: 1.3rem;
   padding-right: 0.8rem;
   height: 100%;
-  width: 12.5rem;
+  width: 12.4rem;
   background: white;
-  animation: fadein .2s;
   box-shadow: 5px 0px 3px -2px #aeaeae;
+  transition: left 0.2s;
 }
 
-.side-modal-container-closed {
-  animation: fadeout 1s;
-
+.side-modal-container-open {
+  left: 0
 }
-
-@keyframes fadein {
-  from {
-    left: -17rem;
-  }
-
-  to {
-    left: 0;
-  }
-}
-
-@keyframes fadeout {
-  from {
-    left: 0;
-  }
-
-  to {
-    left: -17rem;
-  }
-}
-
 
 .side-modal-header {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 1rem;
+  gap: 0.9rem;
   background: white;
+  border-bottom: solid 1px var(--gray3);
 }
 
 .side-modal-contents {
@@ -312,8 +303,6 @@ body {
   padding-left: 1rem;
   border-radius: 7px;
   font-size: 14px;
-
-
 }
 
 .player-profile-card:hover {
@@ -405,29 +394,6 @@ body {
   padding: 5px;
 }
 
-.game-card {
-  display: flex;
-  justify-content: baseline;
-  margin: 4px;
-  margin-left: 20px;
-  border: solid 2px transparent;
-  background: none;
-  font-size: 15px;
-  font-weight: 400;
-  padding: 10px;
-  width: fit-content;
-}
-
-.game-card:hover {
-  border-bottom: solid 2px gray;
-  border-top: solid 2px var(--gray4);
-  cursor: pointer;
-}
-
-.game-card:hover i {
-  color: #00a6a6;
-  cursor: pointer;
-}
 
 .open-game-button {
   background: none;

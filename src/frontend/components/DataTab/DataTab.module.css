@@ -1,0 +1,35 @@
+.data-tab-container {
+    display: flex;
+    flex-direction: column;
+    top: 0;
+}
+
+.data-header {
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.data-header-title {
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    gap: 1rem;
+}
+
+.data-header-title-text {
+    display: flex;
+    align-items: baseline;
+}
+
+.data-header-title-text p {
+    font-size: 18px;
+}
+
+.data-header-buttons {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding-right: 15px;
+}

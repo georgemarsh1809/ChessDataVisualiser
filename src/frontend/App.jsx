@@ -1,14 +1,11 @@
 import { useState } from "react";
 import { Layout } from "./components/Layout";
-import DashboardTab from "./components/DashboardTab";
+import { DashboardTab } from "./components/DashboardTab";
 import { BrowserRouter, Routes, Route } from "react-router";
-import DataTab from "./components/DataTab";
+import { DataTab } from "./components/DataTab";
 
 function App() {
   const [data, setData] = useState(null);
-  const [tab, setTab] = useState("dashboard")
-
-  console.log(tab)
 
 
   async function getData() {

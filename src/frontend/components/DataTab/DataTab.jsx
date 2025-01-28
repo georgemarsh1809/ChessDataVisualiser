@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import { Chessboard } from "react-chessboard"; // How cool!
 import { Chess } from 'chess.js';
-import SideModal from './SideModal'
-import GameCard from './GameCard';
+import { SideModal } from '../common/SideModal/SideModal';
+import { GameCard } from './components/GameCard/GameCard';
+import { useStore } from '../../store';
+import styles from './DataTab.module.css'
 
-export default function DataTab() {
+export const DataTab = () => {
 
-  const [showSideModal, setShowSideModal] = useState(false)
+  const { toggleSideModal } = useStore()
 
   const fakeData = [
     '001 | Opponent: Magnus Carlsen | Location: Moscow | Event: 41st Festival GM | Year: 2022 | Outcome: Win',
@@ -17,19 +19,14 @@ export default function DataTab() {
     '006 | Opponent: Magnus Carlsen | Location: Moscow | Event: 41st Festival GM | Year: 2022 | Outcome: Win'
   ]
 
-  function handleSideModal() {
-    setShowSideModal(!showSideModal)
-  }
-
-
   return (
     <div className='data-tab-container'>
-      {showSideModal && (
-        <SideModal handleSideModal={handleSideModal} showSideModal={showSideModal} />
-      )}
+
+      <SideModal />
+
       <div className='data-header'>
         <div className='data-header-title'>
-          <button className='menu-button' onClick={handleSideModal}>
+          <button className='menu-button' onClick={toggleSideModal}>
             <i className="fa-solid fa-chevron-right"></i>
           </button>
           <div className='data-header-title-text'>

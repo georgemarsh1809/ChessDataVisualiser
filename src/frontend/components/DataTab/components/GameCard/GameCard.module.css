@@ -1,0 +1,23 @@
+.game-card {
+    display: flex;
+    justify-content: baseline;
+    margin: 4px;
+    margin-left: 20px;
+    border: solid 2px transparent;
+    background: none;
+    font-size: 15px;
+    font-weight: 400;
+    padding: 10px;
+    width: fit-content;
+}
+
+.game-card:hover {
+    border-bottom: solid 2px gray;
+    border-top: solid 2px var(--gray4);
+    cursor: pointer;
+}
+
+.game-card:hover i {
+    color: #00a6a6;
+    cursor: pointer;
+}

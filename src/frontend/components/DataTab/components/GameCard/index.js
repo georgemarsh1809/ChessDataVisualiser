@@ -1,0 +1,2 @@
+export { GameCard } from "./GameCard";
+

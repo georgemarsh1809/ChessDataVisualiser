@@ -1,23 +1,17 @@
 import React, { useState } from 'react'
-import Graph from './Graph'
-import SideModal from './SideModal'
+import { SideModal } from '../common/SideModal/SideModal'
+import { useStore } from '../../store'
 
-export default function DashboardTab() {
 
-  const [showSideModal, setShowSideModal] = useState(false)
-
-  function handleSideModal() {
-    setShowSideModal(!showSideModal)
-  }
+export const DashboardTab = () => {
+  const { showSideModal, toggleSideModal } = useStore()
 
   return (
     <div className='dashboard-tab-container'>
-      {showSideModal && (
-        <SideModal handleSideModal={handleSideModal} showSideModal={showSideModal} />
-      )}
+      <SideModal />
       <div className='dashboard-header'>
         <div className='dashboard-header-title'>
-          <button className='menu-button' onClick={handleSideModal}>
+          <button className='menu-button' onClick={toggleSideModal}>
             <i className="fa-solid fa-chevron-right"></i>
           </button>
           <div className='dashboard-header-title-text'>

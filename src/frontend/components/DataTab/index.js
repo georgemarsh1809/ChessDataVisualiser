@@ -1,0 +1,1 @@
+export { DataTab } from "./DataTab";
