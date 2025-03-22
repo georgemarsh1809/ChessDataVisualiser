@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { SideModal } from '../common/SideModal/SideModal'
 import { useStore } from '../../stateManagement/store'
 import commonStyles from '../common/CommonStyles.module.css'
 import styles from './DashboardTab.module.css'
-
+import { Graph } from './components/Graph/Graph'
 
 export const DashboardTab = () => {
+
   const { toggleSideModal } = useStore()
 
   return (
@@ -44,8 +45,24 @@ export const DashboardTab = () => {
         </div>
       </div>
 
-      {/* <div className='graph-container'>
-        {/* Maybe create a graph scroller component? </div>  */}
+      <div className={styles.graphViewContainer}>
+        {/* <Graph /> */}
+        <div className={styles.graphContainer}>
+          <Graph />
+        </div>
+        <div className={styles.graphContainer}>
+          <Graph />
+        </div>
+        <div className={styles.graphContainer}>
+          <Graph />
+        </div>
+        <div className={styles.graphContainer}>
+          <Graph />
+        </div>
+        <div className={styles.graphContainer}>
+          <Graph />
+        </div>
+      </div>
 
     </div>
   )
