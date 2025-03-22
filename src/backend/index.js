@@ -20,3 +20,8 @@ app.get("/test", async (req, res) => { //
     const [data] = await sql`SELECT * FROM people LIMIT 1;`
     res.send(data)
 })
+
+app.get('/first-move', async () => {
+    const [data] = await sql`SELECT * FROM people LIMIT 1;`
+    res.send(data)
+})

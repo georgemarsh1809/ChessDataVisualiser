@@ -23,5 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 *.env
+*.csv
 UI_DESIGN/
 SQL_QUERIES/

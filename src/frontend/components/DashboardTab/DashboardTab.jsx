@@ -4,6 +4,8 @@ import { useStore } from '../../stateManagement/store'
 import commonStyles from '../common/CommonStyles.module.css'
 import styles from './DashboardTab.module.css'
 import { Graph } from './components/Graph/Graph'
+import { PieChart } from './components/PieChart'
+
 
 export const DashboardTab = () => {
 
@@ -48,7 +50,7 @@ export const DashboardTab = () => {
       <div className={styles.graphViewContainer}>
         {/* <Graph /> */}
         <div className={styles.graphContainer}>
-          <Graph />
+          <PieChart />
         </div>
         <div className={styles.graphContainer}>
           <Graph />
