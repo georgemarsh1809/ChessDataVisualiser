@@ -4,16 +4,19 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "client": "vite",
+    "server": "nodemon src/backend/server.js",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "seed": "node src/backend/utils/createDbTables.js"
   },
   "dependencies": {
     "chess.js": "^1.0.0",
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "flowbite-react": "^0.10.2",
+    "moment": "^2.30.1",
     "nodemon": "^3.1.9",
     "postgres": "^3.4.5",
     "react": "^18.3.1",

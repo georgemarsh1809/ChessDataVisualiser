@@ -1,15 +1,14 @@
-import React from 'react'
-import { SideModal } from '../common/SideModal/SideModal'
-import { useStore } from '../../stateManagement/store'
-import commonStyles from '../common/CommonStyles.module.css'
-import styles from './DashboardTab.module.css'
-import { Graph } from './components/Graph/Graph'
-import { PieChart } from './components/PieChart'
-
+import React from "react";
+import { SideModal } from "../common/SideModal/SideModal";
+import { useStore } from "../../stateManagement/store";
+import commonStyles from "../common/CommonStyles.module.css";
+import styles from "./DashboardTab.module.css";
+import { Graph } from "./components/Graph/Graph";
+import { PieChart } from "./components/PieChart";
 
 export const DashboardTab = () => {
-
-  const { toggleSideModal } = useStore()
+  const { toggleSideModal, firstMoveData } = useStore();
+  console.log("🚀 ~ DashboardTab ~ firstMoveData:", firstMoveData);
 
   return (
     <div className={commonStyles.tabContainer}>
@@ -20,12 +19,8 @@ export const DashboardTab = () => {
             <i className="fa-solid fa-chevron-right"></i>
           </button>
           <div className={commonStyles.tabHeaderTitleText}>
-            <h2>
-              George's Dashboard |
-            </h2>
-            <p>
-              &nbsp;973 games
-            </p>
+            <h2>George's Dashboard |</h2>
+            <p>&nbsp;973 games</p>
           </div>
         </div>
         <div className={commonStyles.tabHeaderButtons}>
@@ -50,7 +45,7 @@ export const DashboardTab = () => {
       <div className={styles.graphViewContainer}>
         {/* <Graph /> */}
         <div className={styles.graphContainer}>
-          <PieChart />
+          <PieChart data={firstMoveData} />
         </div>
         <div className={styles.graphContainer}>
           <Graph />
@@ -65,7 +60,6 @@ export const DashboardTab = () => {
           <Graph />
         </div>
       </div>
-
     </div>
-  )
-}
+  );
+};

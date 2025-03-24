@@ -1,53 +1,46 @@
 import {
-    PieChart as RechartsPieChart,
-    Pie,
-    Sector,
-    Cell,
-    ResponsiveContainer
+  PieChart as RechartsPieChart,
+  Pie,
+  Sector,
+  Cell,
+  ResponsiveContainer,
 } from "recharts";
 
-const data = [
-    { name: '1. e4', value: 400 },
-    { name: '1. d4', value: 300 },
-];
-
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 const RADIAN = Math.PI / 180;
 
-const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    const x = cx + radius * Math.cos(-midAngle * RADIAN);
-    const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-    return (
-        <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-            {data[index].name}
-        </text>
-    );
+export const PieChart = ({ data }) => {
+  console.log("🚀 ~ PieChart ~ data:", data);
+  if (!data) return;
+  const renderCustomizedLabel = ({
+    cx,
+    cy,
+    midAngle,
+    innerRadius,
+    outerRadius,
+    percent,
+    index,
+  }) => {
+    return data[index].name;
+  };
+  return (
+    <ResponsiveContainer>
+      <RechartsPieChart width={400} height={400}>
+        <Pie
+          data={data}
+          cx="50%"
+          cy="50%"
+          labelLine={false}
+          label={renderCustomizedLabel}
+          fill="#8884d8"
+          dataKey="value"
+        >
+          {data.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          ))}
+        </Pie>
+      </RechartsPieChart>
+    </ResponsiveContainer>
+  );
 };
-
-
-export const PieChart = () => {
-    return (
-        <ResponsiveContainer>
-
-            <RechartsPieChart width={400} height={400}>
-                <Pie
-                    data={data}
-                    cx="50%"
-                    cy="50%"
-                    labelLine={false}
-                    label={renderCustomizedLabel}
-                    outerRadius={80}
-                    fill="#8884d8"
-                    dataKey="value"
-                >
-                    {data.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                    ))}
-                </Pie>
-            </RechartsPieChart>
-        </ResponsiveContainer>
-    );
-}
