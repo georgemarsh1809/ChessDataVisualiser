@@ -10,6 +10,8 @@
     display: flex;
     flex-direction: column;
     top: 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .tab-header {

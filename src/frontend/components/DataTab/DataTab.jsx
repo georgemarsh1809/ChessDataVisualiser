@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { Chessboard } from "react-chessboard";
-import { Chess } from 'chess.js';
+import { Chess } from "chess.js";
 import { SideModal } from '../common/SideModal/SideModal';
 import { GameCard } from './components/GameCard/GameCard';
+import { AnalysisBoard } from './components/AnalysisBoard/AnalysisBoard';
 import { useStore } from '../../stateManagement/store';
 import styles from './DataTab.module.css'
 import commonStyles from '../common/CommonStyles.module.css';
@@ -79,9 +80,9 @@ export const DataTab = () => {
             <p>&nbsp;Hikaru Nakamura, London, 2021</p>
           </div>
           <div className={styles.chessBoardContainer}>
-            <Chessboard>
+            <AnalysisBoard>
 
-            </Chessboard>
+            </AnalysisBoard>
           </div>
           <div className={styles.moveCounterContainer}>
             <button className={styles.prevMoveButton}>
