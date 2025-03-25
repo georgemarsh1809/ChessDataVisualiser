@@ -25,8 +25,9 @@ export const PieChart = ({ data }) => {
     return data[index].name;
   };
   return (
-    <ResponsiveContainer>
-      <RechartsPieChart width={400} height={400}>
+    <ResponsiveContainer width={400} height={400}>
+
+      <RechartsPieChart width={300} height={300}>
         <Pie
           data={data}
           cx="50%"
@@ -40,6 +41,10 @@ export const PieChart = ({ data }) => {
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>
+        <text x={15} y={15} dominantBaseline="central" fill="black" textDecoration="underline">
+          <tspan fontSize="25">First Move</tspan>
+        </text>
+
       </RechartsPieChart>
     </ResponsiveContainer>
   );

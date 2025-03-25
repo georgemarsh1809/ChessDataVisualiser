@@ -33,7 +33,7 @@ async function createDbTables() {
     date,
     lines,
     moves,
-    filename) FROM '/Users/henry/Projects/ChessDataVisualiser/data/game_data.csv'\
+    filename) FROM 'C:/Users/Public/game_data.csv'\
      delimiter ',' csv header;`;
 
   sql.end();

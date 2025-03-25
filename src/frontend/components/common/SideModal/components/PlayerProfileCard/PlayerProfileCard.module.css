@@ -13,5 +13,5 @@
 .player-profile-card:hover {
     cursor: pointer;
     background-color: var(--gray2);
-    text-decoration: underline;
+    font-weight: 450;
 }

@@ -8,9 +8,9 @@ export const SideModal = () => {
 
   const { showSideModal, toggleSideModal } = useStore()
 
-  const playerList = ['Alexander Alekhine', 'Viswanathan Anand', 'Mikhail Botvinnik',
-    'José Raúl Capablanca', 'Magnus Carlsen', 'Fabiano Caruana', 'Bobby Fischer', 'Garry Kasparov',
-    'Paul Morphy', 'Hikarua Nakamura', 'Judit Polgár', 'Mikhail Tal']
+  const playerList = ['✨ Alexander Alekhine', '✨ Viswanathan Anand', '✨ Mikhail Botvinnik',
+    '✨ José Raúl Capablanca', '✨ Magnus Carlsen', '✨ Fabiano Caruana', '✨ Bobby Fischer', '✨ Garry Kasparov',
+    '✨ Paul Morphy', '✨ Hikarua Nakamura', '✨ Judit Polgár', '✨ Mikhail Tal']
 
   return (
     <div className={`${styles.sideModalContainer} ${showSideModal ? styles.sideModalContainerOpen : ""}`}>

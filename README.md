@@ -24,36 +24,16 @@
 
 - https://www.kaggle.com/datasets/liury123/chess-game-from-12-top-players
 
-SELECT count(\*)
-FROM game_data
-WHERE lines LIKE '1. e4%' AND player LIKE 'Tal';
 
-select \*
-from game_data
-group by lines
+adding the api:
+go in sql editor and write new query
+add new route into server.js
+copy query into sql block
+anything that is a parameter eg name goes into ${}
 
-SELECT left(lines,5) as id
-FROM game_data
-WHERE player like 'Tal'
-GROUP BY left(lines,5);
-
-+-------------+-------------------------+
-| OperationId | Error |
-+-------------+-------------------------+
-| 1 | MajorCategoryX:DetailsP |
-| 2 | MajorCategoryX:DetailsQ |
-| 3 | MajorCategoryY:DetailsR |
-+-------------+-------------------------+
-
-SELECT
-COUNT(SUBSTRING(lines, 0, 5) AS opening_move)
-FROM game_data
-GROUP BY SUBSTRING(lines, 0, 5)
-
-SELECT
-COUNT(SUBSTRING(lines, 0, 6)) AS count_opening_move,
-SUBSTRING(lines, 0, 6) AS opening_move,
-coalesce(CAST(SUBSTRING(date, 0, 5) AS integer), 0) AS year_int,
-FROM game_data
-WHERE player like 'Tal' AND year_int > 1982
-GROUP BY SUBSTRING(lines, 0, 6)
+calling the api:
+add new useEffect into app.jsx
+call you api in new useeffect
+add new value into store.js for new data
+go into dashboard.js and retreive that data
+pass data as a param into graph react component
