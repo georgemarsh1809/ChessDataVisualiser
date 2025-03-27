@@ -8,4 +8,6 @@ export const useStore = create((set) => ({
   setTab: (newTab) => set((state) => ({ tab: newTab })),
   firstMoveData: null,
   setFirstMoveData: (data) => set({ firstMoveData: data }),
+  resultData: null,
+  setResultData: (data) => set({ resultData: data })
 }));

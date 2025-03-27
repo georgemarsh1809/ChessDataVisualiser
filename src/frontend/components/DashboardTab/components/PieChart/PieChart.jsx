@@ -10,7 +10,7 @@ const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 const RADIAN = Math.PI / 180;
 
-export const PieChart = ({ data }) => {
+export const PieChart = ({ data, title }) => {
   console.log("🚀 ~ PieChart ~ data:", data);
   if (!data) return;
   const renderCustomizedLabel = ({
@@ -42,7 +42,7 @@ export const PieChart = ({ data }) => {
           ))}
         </Pie>
         <text x={15} y={15} dominantBaseline="central" fill="black" textDecoration="underline">
-          <tspan fontSize="25">First Move</tspan>
+          <tspan fontSize="25">{title}</tspan>
         </text>
 
       </RechartsPieChart>

@@ -7,7 +7,8 @@ import { Graph } from "./components/Graph/Graph";
 import { PieChart } from "./components/PieChart";
 
 export const DashboardTab = () => {
-  const { toggleSideModal, firstMoveData } = useStore();
+  const { toggleSideModal, firstMoveData, resultData } = useStore();
+
   console.log("🚀 ~ DashboardTab ~ firstMoveData:", firstMoveData);
 
   return (
@@ -45,13 +46,13 @@ export const DashboardTab = () => {
       <div className={styles.graphViewContainer}>
         {/* <Graph /> */}
         <div className={styles.graphContainer}>
-          <PieChart data={firstMoveData} />
+          <PieChart data={firstMoveData} title={"First Move"} />
         </div>
         <div className={styles.graphContainer}>
           <Graph />
         </div>
         <div className={styles.graphContainer}>
-          <Graph />
+          <PieChart data={resultData} title={"Outcome"} />
         </div>
         <div className={styles.graphContainer}>
           <Graph />
