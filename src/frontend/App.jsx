@@ -6,25 +6,54 @@ import { DataTab } from "./components/DataTab";
 import { useStore } from "./stateManagement/store";
 
 function App() {
+  const { playerProfile } = useStore();
   const setFirstMoveData = useStore((state) => state.setFirstMoveData);
   const setResultData = useStore((state) => state.setResultData);
+  const setTotalGameData = useStore((state) => state.setTotalGameData);
+
 
 
   useEffect(() => {
     const getData = async () => {
       const res = await fetch(
+        "http://localhost:3000/total-games?" +
+        new URLSearchParams({
+          player: playerProfile,
+        }).toString(),
+        {
+          method: "GET",
+        }
+      );
+
+      const resData = await res.json();
+      console.log("🚀 ~ getData ~ totalGame_resData:", resData);
+      setTotalGameData(
+        resData.map((row) => ({
+          value: Number(row.count),
+        }))
+      );
+    };
+    getData();
+  }, [playerProfile]);
+
+  //First move
+  useEffect(() => {
+    console.log(playerProfile)
+
+    const getData = async () => {
+      const res = await fetch(
         "http://localhost:3000/first-move?" +
         new URLSearchParams({
-          yearStart: 1960,
-          player: "Tal",
+          player: playerProfile,
           color: "White",
         }).toString(),
         {
           method: "GET",
         }
       );
+
       const resData = await res.json();
-      console.log("🚀 ~ getData ~ resData:", resData);
+      console.log("🚀 ~ getData ~ firstMoveResData:", resData);
       setFirstMoveData(
         resData.map((row) => ({
           name: row.opening_move,
@@ -33,23 +62,22 @@ function App() {
       );
     };
     getData();
-  }, []);
+  }, [playerProfile]);
 
-
+  //Outcome
   useEffect(() => {
     const getData = async () => {
       const res = await fetch(
         "http://localhost:3000/outcome?" +
         new URLSearchParams({
-          yearStart: 1960,
-          player: "Tal",
+          player: playerProfile,
         }).toString(),
         {
           method: "GET",
         }
       );
       const resData = await res.json();
-      console.log("🚀 ~ getData ~ resData:", resData);
+      // console.log("🚀 ~ getData ~ resData:", resData);
       setResultData(
         resData.map((row) => ({
           name: row.result,
@@ -58,7 +86,11 @@ function App() {
       );
     };
     getData();
-  }, []);
+  }, [playerProfile]);
+
+
+
+
 
   return (
     <>

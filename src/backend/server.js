@@ -24,18 +24,34 @@ app.get("/test", async (req, res) => {
   res.send(data);
 });
 
+app.get("/total-games", async (req, res, next) => {
+  validateFilterParams(req, res, next);
+
+  const data = await sql`SELECT 
+        COUNT(player)
+      FROM 
+        game_data
+      WHERE 
+        1=1
+        ${req.query?.player ? sql`AND player like ${req.query.player}` : sql``}
+        
+  `
+  console.log("🚀 ~ app.get ~ totalGameData:", data);
+  res.send(data)
+})
+
 // First move endpoint
 app.get("/first-move", async (req, res, next) => {
   validateFilterParams(req, res, next);
 
-  const data = await sql`SELECT
+  const data = await sql`SELECT * FROM (SELECT
         COUNT(SUBSTRING(lines, 0, 6)) AS count_opening_move,
         SUBSTRING(lines, 0, 6) AS opening_move
     FROM
         game_data
     WHERE 
         1=1
-        ${req.query?.player ? sql`AND player = ${req.query.player}` : sql``}
+        ${req.query?.player ? sql`AND player like ${req.query.player}` : sql``}
         ${req.query?.yearStart ? sql`AND year > ${req.query.yearStart}` : sql``}
         ${req.query?.yearEnd ? sql`AND year < ${req.query.yearEnd}` : sql``}
         ${req.query?.color ? sql`AND color = ${req.query.color}` : sql``}
@@ -56,8 +72,9 @@ app.get("/first-move", async (req, res, next) => {
         ${req.query?.site ? sql`AND site = ${req.query.site}` : sql``}
         ${req.query?.event ? sql`AND event = ${req.query.event}` : sql``}
         GROUP BY
-            SUBSTRING(lines, 0, 6)`;
-  console.log("🚀 ~ app.get ~ data:", data);
+            SUBSTRING(lines, 0, 6))
+            WHERE count_opening_move > 5`;
+  // console.log("🚀 ~ app.get ~ data:", data);
   res.send(data);
 });
 
@@ -66,13 +83,13 @@ app.get("/outcome", async (req, res, next) => {
   validateFilterParams(req, res, next);
 
   const data = await sql`SELECT
-        COUNT(SUBSTRING(result, 0, 6)) AS count_result,
-        SUBSTRING(result, 0, 6) AS result
+        COUNT(result) AS count_result,
+        result
     FROM
         game_data
     WHERE 
         1=1
-        ${req.query?.player ? sql`AND player = ${req.query.player}` : sql``}
+        ${req.query?.player ? sql`AND player like ${req.query.player}` : sql``}
         ${req.query?.yearStart ? sql`AND year > ${req.query.yearStart}` : sql``}
         ${req.query?.yearEnd ? sql`AND year < ${req.query.yearEnd}` : sql``}
         ${req.query?.color ? sql`AND color = ${req.query.color}` : sql``}
@@ -93,8 +110,10 @@ app.get("/outcome", async (req, res, next) => {
         ${req.query?.site ? sql`AND site = ${req.query.site}` : sql``}
         ${req.query?.event ? sql`AND event = ${req.query.event}` : sql``}
         GROUP BY
-            SUBSTRING(result, 0, 6)`;
+            result`;
   console.log("🚀 ~ app.get ~ data:", data);
+  console.log(req.query.player)
+
   res.send(data);
 
 })

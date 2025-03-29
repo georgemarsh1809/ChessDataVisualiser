@@ -37,3 +37,13 @@ call you api in new useeffect
 add new value into store.js for new data
 go into dashboard.js and retreive that data
 pass data as a param into graph react component
+
+### other graphs to make:
+- ! win percentage vs game length (move count, 0-20, 21-40, 41-60, 61-80, 81-100, 100+)
+- ! games played vs year
+- ! win % vs year 
+- win percentage vs opponent elo //  oppoent elo vs result (scatter graph)
+- avg move count vs result 
+- games played vs event 
+- move count vs year 
+

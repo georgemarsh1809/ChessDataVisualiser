@@ -7,9 +7,10 @@ import { Graph } from "./components/Graph/Graph";
 import { PieChart } from "./components/PieChart";
 
 export const DashboardTab = () => {
-  const { toggleSideModal, firstMoveData, resultData } = useStore();
+  const { toggleSideModal, playerProfile, totalGameData, firstMoveData, resultData } = useStore();
 
   console.log("🚀 ~ DashboardTab ~ firstMoveData:", firstMoveData);
+  console.log("🚀 ~ DashboardTab ~ totalGameData:", totalGameData);
 
   return (
     <div className={commonStyles.tabContainer}>
@@ -20,8 +21,8 @@ export const DashboardTab = () => {
             <i className="fa-solid fa-chevron-right"></i>
           </button>
           <div className={commonStyles.tabHeaderTitleText}>
-            <h2>George's Dashboard |</h2>
-            <p>&nbsp;973 games</p>
+            <h2>{playerProfile}'s Dashboard |</h2>
+            <p> {totalGameData}games</p>
           </div>
         </div>
         <div className={commonStyles.tabHeaderButtons}>

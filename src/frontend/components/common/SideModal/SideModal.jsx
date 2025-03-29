@@ -6,7 +6,7 @@ import styles from './SideModal.module.css'
 
 export const SideModal = () => {
 
-  const { showSideModal, toggleSideModal } = useStore()
+  const { showSideModal, toggleSideModal, setTab } = useStore()
 
   const playerList = ['✨ Alexander Alekhine', '✨ Viswanathan Anand', '✨ Mikhail Botvinnik',
     '✨ José Raúl Capablanca', '✨ Magnus Carlsen', '✨ Fabiano Caruana', '✨ Bobby Fischer', '✨ Garry Kasparov',
@@ -23,9 +23,7 @@ export const SideModal = () => {
       <div className={styles.topPlayersSection}>
         {playerList.map((player, playerIndex) => {
           return (
-            <PlayerProfileCard key={playerIndex} onClick={() => {
-              // Some profile data load function
-            }} >
+            <PlayerProfileCard key={playerIndex} data={player} >
               <p>{player}</p>
             </PlayerProfileCard>
           )
