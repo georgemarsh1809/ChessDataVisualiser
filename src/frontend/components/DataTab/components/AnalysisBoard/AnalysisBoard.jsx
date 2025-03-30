@@ -99,14 +99,6 @@ export const AnalysisBoard = () => {
             }}>
                 reset
             </button>
-            <button onClick={() => {
-                // setPossibleMate("");
-                // setBestline("");
-                game.undo();
-                setChessBoardPosition(game.fen());
-            }}>
-                undo
-            </button>
         </div>
     );
 

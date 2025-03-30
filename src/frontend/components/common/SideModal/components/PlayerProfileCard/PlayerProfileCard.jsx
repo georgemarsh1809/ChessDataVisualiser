@@ -18,8 +18,6 @@ export const PlayerProfileCard = (props) => {
         <button className={styles.playerProfileCard}
             onClick={
                 () => {
-                    // Some profile data load function
-                    // console.log(getLastNameFromData(data))
                     setPlayerProfile(getLastNameFromData(data))
                     toggleSideModal()
                 }

@@ -1,27 +1,36 @@
 .side-modal-container {
     flex-direction: column;
-    position: absolute;
+    position: fixed;
     z-index: 11;
     left: -17rem;
+    top: 81px;
     padding-left: 1.3rem;
     padding-right: 0.8rem;
-    height: 100%;
-    width: 12.4rem;
+    padding-bottom: 50px;
+
+    height: 89%;
+    width: 12.5rem;
     background: white;
     box-shadow: 5px 0px 3px -2px #aeaeae;
     transition: left 0.2s;
 }
 
 .side-modal-container-open {
-    left: 0
+    left: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 50px;
+
 }
 
 .side-modal-header {
     display: flex;
     flex-direction: row;
     align-items: center;
+    position: fixed;
     gap: 0.9rem;
-    margin-bottom: 1rem;
+    margin-bottom: 100px;
     background: white;
     border-bottom: solid 1px var(--gray3);
 }
@@ -30,5 +39,8 @@
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+}
 
+.side-modal-container button:nth-child(1) {
+    margin-top: 80px;
 }

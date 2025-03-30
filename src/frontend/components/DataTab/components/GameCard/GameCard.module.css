@@ -1,7 +1,7 @@
 .game-card {
     display: flex;
     justify-content: baseline;
-    margin: 4px;
+    margin: 2px;
     margin-left: 20px;
     border: solid 2px transparent;
     background: none;

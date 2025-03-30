@@ -15,3 +15,7 @@
     background-color: var(--gray2);
     font-weight: 450;
 }
+
+.player-profile-card button:nth-child(2) {
+    padding: 500px;
+}

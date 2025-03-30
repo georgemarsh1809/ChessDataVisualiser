@@ -13,6 +13,7 @@ function App() {
   const setTotalGameData = useStore((state) => state.setTotalGameData);
 
 
+  // useEffect for updating the graphs when player profile is chosen
 
   useEffect(() => {
     // This use effect runs every time the playerProfile state changes (whenever a new profile is loaded from the side modal)
