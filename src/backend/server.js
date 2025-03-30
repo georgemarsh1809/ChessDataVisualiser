@@ -36,7 +36,7 @@ app.get("/total-games", async (req, res, next) => {
         ${req.query?.player ? sql`AND player like ${req.query.player}` : sql``}
         
   `
-  console.log("🚀 ~ app.get ~ totalGameData:", data);
+  // console.log("🚀 ~ app.get ~ totalGameData:", data);
   res.send(data)
 })
 
@@ -111,7 +111,7 @@ app.get("/outcome", async (req, res, next) => {
         ${req.query?.event ? sql`AND event = ${req.query.event}` : sql``}
         GROUP BY
             result`;
-  console.log("🚀 ~ app.get ~ data:", data);
+  // console.log("🚀 ~ app.get ~ data:", data);
   console.log(req.query.player)
 
   res.send(data);

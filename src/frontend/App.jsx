@@ -26,11 +26,9 @@ function App() {
       );
 
       const resData = await res.json();
-      console.log("🚀 ~ getData ~ totalGame_resData:", resData);
+      // console.log("🚀 ~ getData ~ totalGame_resData:", resData);
       setTotalGameData(
-        resData.map((row) => ({
-          value: Number(row.count),
-        }))
+        Number(resData[0]["count"])
       );
     };
     getData();

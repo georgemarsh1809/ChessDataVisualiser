@@ -22,7 +22,7 @@ export const DashboardTab = () => {
           </button>
           <div className={commonStyles.tabHeaderTitleText}>
             <h2>{playerProfile}'s Dashboard |</h2>
-            <p> {totalGameData}games</p>
+            <p>&nbsp; {totalGameData} games</p>
           </div>
         </div>
         <div className={commonStyles.tabHeaderButtons}>

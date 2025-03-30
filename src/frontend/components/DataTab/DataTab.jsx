@@ -10,7 +10,7 @@ import commonStyles from '../common/CommonStyles.module.css';
 
 export const DataTab = () => {
 
-  const { toggleSideModal, playerProfile } = useStore()
+  const { toggleSideModal, playerProfile, totalGameData } = useStore()
 
   const fakeData = [
     '001 | Opponent: Magnus Carlsen | Location: Moscow | Event: 41st Festival GM | Year: 2022 | Outcome: Win',
@@ -35,9 +35,7 @@ export const DataTab = () => {
             <h2>
               {playerProfile}'s Data |
             </h2>
-            <p>
-              &nbsp;973 games
-            </p>
+            <p>&nbsp; {totalGameData} games</p>
           </div>
         </div>
         <div className={commonStyles.tabHeaderButtons}>
