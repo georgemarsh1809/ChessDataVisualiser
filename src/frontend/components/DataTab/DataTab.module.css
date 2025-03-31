@@ -60,3 +60,11 @@
     gap: 0.2rem;
     ;
 }
+
+.page-num-inc-button {
+    border: none
+}
+
+.page-num-inc-button:hover {
+    border: solid 2px black;
+}

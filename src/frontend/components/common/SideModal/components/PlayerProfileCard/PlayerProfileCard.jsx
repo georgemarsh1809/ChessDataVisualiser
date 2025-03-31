@@ -7,6 +7,7 @@ export const PlayerProfileCard = (props) => {
     const { children, data } = props
     const { toggleSideModal } = useStore()
     const setPlayerProfile = useStore((state) => state.setPlayerProfile)
+    const setPageNumber = useStore((state) => state.setPageNumber)
 
     function getLastNameFromData(playerFullName) {
         const splitName = playerFullName.split(" ")
@@ -19,6 +20,7 @@ export const PlayerProfileCard = (props) => {
             onClick={
                 () => {
                     setPlayerProfile(getLastNameFromData(data))
+                    setPageNumber(1)
                     toggleSideModal()
                 }
             }>

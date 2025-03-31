@@ -7,14 +7,45 @@ import { useStore } from "./stateManagement/store";
 
 function App() {
   // Importing all necessary state and state setter functions
-  const { playerProfile } = useStore();
+  const { playerProfile, pageNumber } = useStore();
   const setFirstMoveData = useStore((state) => state.setFirstMoveData);
   const setResultData = useStore((state) => state.setResultData);
   const setTotalGameData = useStore((state) => state.setTotalGameData);
+  const setAllGamesData = useStore((state) => state.setAllGamesData);
 
+
+  useEffect(() => {
+    // API Call for Total Games data
+    const getAllGamesData = async () => {
+      const res = await fetch(
+        "http://localhost:3000/all-game-data?" +
+        new URLSearchParams({
+          player: playerProfile,
+          pageNumber: pageNumber
+        }).toString(),
+        {
+          method: "GET",
+        }
+      );
+
+      const resData = await res.json();
+      // console.log("🚀 ~ getData ~ totalGame_resData:", resData);
+      setAllGamesData(
+        resData.map((row) => ({
+          opponent: row.opponent,
+          location: row.site,
+          event: row.event,
+          year: row.year,
+          result: row.result
+        }))
+
+      );
+      console.log("All games data: ", resData)
+    };
+    getAllGamesData();
+  }, [pageNumber, playerProfile])
 
   // useEffect for updating the graphs when player profile is chosen
-
   useEffect(() => {
     // This use effect runs every time the playerProfile state changes (whenever a new profile is loaded from the side modal)
     // Since all the graphs are dependent on this state change, all API calls can be declared inside the same useEffect
@@ -22,7 +53,7 @@ function App() {
     // API Call for Total Games data
     const getTotalGamesData = async () => {
       const res = await fetch(
-        "http://localhost:3000/total-games?" +
+        "http://localhost:3000/total-games-count?" +
         new URLSearchParams({
           player: playerProfile,
         }).toString(),
@@ -82,9 +113,11 @@ function App() {
       );
     };
 
+
+
+    getTotalGamesData();
     getOutcomeData();
     getFirstMoveData();
-    getTotalGamesData();
   }, [playerProfile]); // The dependency array is set to the playerProfile state
 
 

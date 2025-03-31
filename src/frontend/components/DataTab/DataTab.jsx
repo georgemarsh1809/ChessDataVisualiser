@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import { Chessboard } from "react-chessboard";
 import { Chess } from "chess.js";
 import { SideModal } from '../common/SideModal/SideModal';
@@ -10,16 +10,18 @@ import commonStyles from '../common/CommonStyles.module.css';
 
 export const DataTab = () => {
 
-  const { toggleSideModal, playerProfile, totalGameData } = useStore()
+  const { toggleSideModal, playerProfile, allGamesData, totalGameData, pageNumber } = useStore()
+  const setPageNumber = useStore((state) => state.setPageNumber);
+  const pageNumberLimit = Math.ceil(totalGameData / 10)
 
-  const fakeData = [
-    '001 | Opponent: Magnus Carlsen | Location: Moscow | Event: 41st Festival GM | Year: 2022 | Outcome: Win',
-    '002 | Opponent: Magnus Carlsen | Location: Moscow | Event: 41st Festival GM | Year: 2022 | Outcome: Win',
-    '003 | Opponent: Magnus Carlsen | Location: Moscow | Event: 41st Festival GM | Year: 2022 | Outcome: Win',
-    '004 | Opponent: Magnus Carlsen | Location: Moscow | Event: 41st Festival GM | Year: 2022 | Outcome: Win',
-    '005 | Opponent: Magnus Carlsen | Location: Moscow | Event: 41st Festival GM | Year: 2022 | Outcome: Win',
-    '006 | Opponent: Magnus Carlsen | Location: Moscow | Event: 41st Festival GM | Year: 2022 | Outcome: Win'
-  ]
+  // const fakeData = [
+  //   '001 | Opponent: Magnus Carlsen | Location: Moscow | Event: 41st Festival GM | Year: 2022 | Outcome: Win',
+  //   '002 | Opponent: Magnus Carlsen | Location: Moscow | Event: 41st Festival GM | Year: 2022 | Outcome: Win',
+  //   '003 | Opponent: Magnus Carlsen | Location: Moscow | Event: 41st Festival GM | Year: 2022 | Outcome: Win',
+  //   '004 | Opponent: Magnus Carlsen | Location: Moscow | Event: 41st Festival GM | Year: 2022 | Outcome: Win',
+  //   '005 | Opponent: Magnus Carlsen | Location: Moscow | Event: 41st Festival GM | Year: 2022 | Outcome: Win',
+  //   '006 | Opponent: Magnus Carlsen | Location: Moscow | Event: 41st Festival GM | Year: 2022 | Outcome: Win'
+  // ]
 
   return (
     <div className={commonStyles.tabContainer}>
@@ -58,13 +60,30 @@ export const DataTab = () => {
       </div>
       <div className={styles.yourGamesTitleBar}>
         Your Games
+        <button className={styles.pageNumIncButton} onClick={() => {
+          setPageNumber(pageNumber > 1 ? pageNumber - 1 : 1)
+        }
+        }>
+          <i className="fa-solid fa-chevron-left" />
+        </button>
+        <p>Page: {pageNumber} / {pageNumberLimit}</p>
+        <button onClick={() => {
+          setPageNumber(pageNumber + 1)
+        }
+        }>
+          <i className="fa-solid fa-chevron-right" />
+        </button>
+        <button onClick={() => {
+          setPageNumber(1)
+        }}>
+          Reset Page Number
+        </button>
       </div>
       <div className={styles.gameDataContainer}>
         <div className={styles.gameListContainer}>
-          {fakeData.map((fakeGame, fakeGameIndex) => {
+          {allGamesData.map((gameData, gameIndex) => {
             return (
-              <GameCard key={fakeGameIndex}>
-                {fakeGame}
+              <GameCard key={gameIndex} data={gameData} index={gameIndex}>
                 <button className={styles.openGameButton}>
                   <i className="fa-solid fa-up-right-from-square"></i>
                 </button>
@@ -72,6 +91,7 @@ export const DataTab = () => {
             )
           })}
         </div>
+
         <div className={styles.boardViewContainer}>
           <div className={styles.gameTitleContainer}>
             <p className={commonStyles.boldText}>Game 006&nbsp;|</p>

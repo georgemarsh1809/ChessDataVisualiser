@@ -24,7 +24,7 @@ app.get("/test", async (req, res) => {
   res.send(data);
 });
 
-app.get("/total-games", async (req, res, next) => {
+app.get("/total-games-count", async (req, res, next) => {
   validateFilterParams(req, res, next);
 
   const data = await sql`SELECT 
@@ -38,6 +38,52 @@ app.get("/total-games", async (req, res, next) => {
   `
   // console.log("🚀 ~ app.get ~ totalGameData:", data);
   res.send(data)
+})
+
+// API call for getting all games for a certain player to be displayed in data tab
+app.get("/all-game-data", async (req, res, next) => {
+  validateFilterParams(req, res, next);
+  const offset = req.query?.pageNumber ? 10 * req.query.pageNumber : 1
+
+  const data = await sql`SELECT
+    opponent, 
+    site, 
+    event, 
+    year, 
+    result
+FROM
+  game_data
+WHERE 
+  1=1
+  ${req.query?.player ? sql`AND player like ${req.query.player}` : sql``}
+  ${req.query?.yearStart ? sql`AND year > ${req.query.yearStart}` : sql``}
+  ${req.query?.yearEnd ? sql`AND year < ${req.query.yearEnd}` : sql``}
+  ${req.query?.color ? sql`AND color = ${req.query.color}` : sql``}
+  ${req.query?.opponent
+      ? sql`AND opponent = ${req.query.opponent}`
+      : sql``
+    }
+  ${req.query?.result ? sql`AND result = ${req.query.result}` : sql``}
+  ${req.query?.moves ? sql`AND moves > ${req.query.moves}` : sql``}
+  ${req.query?.player_elo
+      ? sql`AND player_elo > ${req.query.player_elo}`
+      : sql``
+    }
+  ${req.query?.opponent_elo
+      ? sql`AND opponent_elo > ${req.query.opponent_elo}`
+      : sql``
+    }
+  ${req.query?.site ? sql`AND site = ${req.query.site}` : sql``}
+  ${req.query?.event ? sql`AND event = ${req.query.event}` : sql``}
+  ORDER BY  
+      year DESC
+  LIMIT 10
+  OFFSET ${req.query?.pageNumber ? sql`${offset}` : sql``}`;
+  // console.log("🚀 ~ app.get ~ data:", data);
+  // console.log(req.query.player)
+  //  OFFSET ${req.query?.pageNumber ? sql`${req.query.pageNumber * 10}` : sql``}
+
+  res.send(data);
 })
 
 // First move endpoint
