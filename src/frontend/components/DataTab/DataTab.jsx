@@ -25,9 +25,7 @@ export const DataTab = () => {
 
   return (
     <div className={commonStyles.tabContainer}>
-
       <SideModal />
-
       <div className={commonStyles.tabHeader}>
         <div className={commonStyles.tabHeaderTitle}>
           <button className={commonStyles.menuButton} onClick={toggleSideModal}>
@@ -59,25 +57,30 @@ export const DataTab = () => {
         </div>
       </div>
       <div className={styles.yourGamesTitleBar}>
-        Your Games
-        <button className={styles.pageNumIncButton} onClick={() => {
-          setPageNumber(pageNumber > 1 ? pageNumber - 1 : 1)
-        }
-        }>
-          <i className="fa-solid fa-chevron-left" />
-        </button>
-        <p>Page: {pageNumber} / {pageNumberLimit}</p>
-        <button onClick={() => {
-          setPageNumber(pageNumber + 1)
-        }
-        }>
-          <i className="fa-solid fa-chevron-right" />
-        </button>
-        <button onClick={() => {
-          setPageNumber(1)
-        }}>
-          Reset Page Number
-        </button>
+        <div className={styles.yourGamesTitleTextContainer}>
+          Your Games
+        </div>
+        <div className={styles.pageButtonsContainer}>
+          <button onClick={() => {
+            setPageNumber(1)
+          }}>
+            <i class="fa-solid fa-backward-step"></i>
+          </button>
+          <button className={styles.pageNumIncButton} onClick={() => {
+            setPageNumber(pageNumber > 1 ? pageNumber - 1 : 1)
+          }
+          }>
+            <i className="fa-solid fa-chevron-left" />
+          </button>
+          <p>Page: {pageNumber} / {pageNumberLimit}</p>
+          <button onClick={() => {
+            setPageNumber(pageNumber + 1)
+          }
+          }>
+            <i className="fa-solid fa-chevron-right" />
+          </button>
+        </div>
+
       </div>
       <div className={styles.gameDataContainer}>
         <div className={styles.gameListContainer}>

@@ -44,3 +44,24 @@
 .side-modal-container button:nth-child(1) {
     margin-top: 80px;
 }
+
+/* 
+.side-modal-container button:last-child {
+    margin-bottom: 80px;
+} */
+
+.create-profile-button {
+    display: flex;
+    position: fixed;
+    min-width: 180px;
+    height: 30px;
+    bottom: 0;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-weight: 500;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border: solid 1px black;
+
+}

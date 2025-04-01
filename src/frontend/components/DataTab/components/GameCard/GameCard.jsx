@@ -17,10 +17,27 @@ export const GameCard = (props) => {
     const result = data["result"]
     const gameIndex = index
 
+    var gameNumber = ""
+
+    console.log(gameIndex)
+
+    if (((gameIndex + 1) + (pageNumber - 1) * 10) < 10) {
+        gameNumber = "00" + ((gameIndex + 1) + (pageNumber - 1) * 10)
+        // gameNumber = 111
+    } else {
+        if (((gameIndex + 1) + (pageNumber - 1) * 10) < 100) {
+            gameNumber = "0" + ((gameIndex + 1) + (pageNumber - 1) * 10)
+        } else {
+            gameNumber = ((gameIndex + 1) + (pageNumber - 1) * 10)
+        }
+    }
+
+
+
     return (
         <div className={styles.gameCard}>
             {/* <p>{JSON.stringify(data)}</p> */}
-            <p>{(gameIndex + 1) + (pageNumber - 1) * 10} | Opponent: {opponent} | Location: {location} | Event: {event} | Year: {year} | Result: {result}</p>
+            <p>{gameNumber} | Opponent: {opponent} | Location: {location} | Event: {event} | Year: {year} | Result: {result}</p>
             {children}
         </div>
     )

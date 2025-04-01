@@ -31,6 +31,11 @@ export const SideModal = () => {
         )}
 
       </div>
+      <div className={styles.createProfileButtonContainer}>
+        <button className={styles.createProfileButton}>
+          Create Profile
+        </button>
+      </div>
 
     </div>
   )

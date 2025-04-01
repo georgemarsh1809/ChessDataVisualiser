@@ -88,6 +88,7 @@ export const AnalysisBoard = () => {
             <Chessboard id="AnalysisBoard" position={chessBoardPosition} onPieceDrop={onDrop} customBoardStyle={{
                 borderRadius: "4px",
                 boxShadow: "0 2px 10px rgba(0, 0, 0, 0.5)"
+
             }}
             // customArrows={bestMove ? [[(bestMove.substring(0, 2)), (bestMove.substring(2, 4)), "rgb(0, 128, 0)"]] : undefined} 
             />
