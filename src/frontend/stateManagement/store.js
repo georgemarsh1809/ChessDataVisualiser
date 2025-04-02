@@ -17,6 +17,11 @@ export const useStore = create((set) => ({
   resultData: null,
   setResultData: (data) => set({ resultData: data }),
   totalGameData: null,
-  setTotalGameData: (data) => set({ totalGameData: data })
+  setTotalGameData: (data) => set({ totalGameData: data }),
+  gameId: 1,
+  setGameId: (id) => set({ gameId: id }),
+  currentGame: 1,
+  setCurrentGame: (game) => set({ currentGame: game })
+
 
 }));

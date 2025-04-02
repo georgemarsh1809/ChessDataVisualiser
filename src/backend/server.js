@@ -34,10 +34,26 @@ app.get("/total-games-count", async (req, res, next) => {
       WHERE 
         1=1
         ${req.query?.player ? sql`AND player like ${req.query.player}` : sql``}
-        
+
   `
   // console.log("🚀 ~ app.get ~ totalGameData:", data);
   res.send(data)
+})
+
+app.get("/get-moves", async (req, res, next) => {
+  validateFilterParams(req, res, next);
+
+  const data = await sql`SELECT 
+        lines
+      FROM 
+        game_data
+      WHERE 
+        1=1
+        ${req.query?.id ? sql`AND id = ${req.query.id}` : sql``}
+
+  `
+  // console.log("🚀 ~ app.get ~ totalGameData:", data);
+  res.send(data);
 })
 
 // API call for getting all games for a certain player to be displayed in data tab
@@ -50,7 +66,8 @@ app.get("/all-game-data", async (req, res, next) => {
     site, 
     event, 
     year, 
-    result
+    result,
+    id
 FROM
   game_data
 WHERE 

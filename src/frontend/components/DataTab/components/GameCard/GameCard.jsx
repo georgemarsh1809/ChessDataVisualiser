@@ -6,20 +6,23 @@ export const GameCard = (props) => {
 
     const { children, data, index } = props
 
-    const { pageNumber } = useStore()
+    const { pageNumber, gameId } = useStore()
+    const setGameId = useStore((state) => state.setGameId)
 
-    console.log(data)
+    // console.log(data)
 
     const opponent = data["opponent"]
     const location = data["location"]
     const event = data["event"]
     const year = data["year"]
     const result = data["result"]
+    const id = data["id"]
     const gameIndex = index
 
     var gameNumber = ""
 
-    console.log(gameIndex)
+
+    // console.log(gameIndex)
 
     if (((gameIndex + 1) + (pageNumber - 1) * 10) < 10) {
         gameNumber = "00" + ((gameIndex + 1) + (pageNumber - 1) * 10)
@@ -31,8 +34,6 @@ export const GameCard = (props) => {
             gameNumber = ((gameIndex + 1) + (pageNumber - 1) * 10)
         }
     }
-
-
 
     return (
         <div className={styles.gameCard}>

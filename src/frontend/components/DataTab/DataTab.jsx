@@ -10,9 +10,37 @@ import commonStyles from '../common/CommonStyles.module.css';
 
 export const DataTab = () => {
 
-  const { toggleSideModal, playerProfile, allGamesData, totalGameData, pageNumber } = useStore()
+  const { toggleSideModal, playerProfile, allGamesData, totalGameData, pageNumber, gameId, currentGame } = useStore()
   const setPageNumber = useStore((state) => state.setPageNumber);
+  const setGameId = useStore((state) => state.setGameId)
+  const setCurrentGame = useStore((state) => state.setCurrentGame)
   const pageNumberLimit = Math.ceil(totalGameData / 10)
+
+  // const loadChessGame = (id) => {
+
+  // }
+
+  useEffect(() => {
+    const getGameMovesById = async () => {
+      const res = await fetch(
+        "http://localhost:3000/get-moves?" +
+        new URLSearchParams({
+          id: gameId,
+        }).toString(),
+        {
+          method: "GET",
+        }
+      );
+
+      const resData = await res.json();
+      // console.log("🚀 ~ getData ~ totalGame_resData:", resData);
+      setCurrentGame(
+        String(resData[0]["lines"])
+      );
+    };
+
+    getGameMovesById()
+  }, [gameId])
 
   // const fakeData = [
   //   '001 | Opponent: Magnus Carlsen | Location: Moscow | Event: 41st Festival GM | Year: 2022 | Outcome: Win',
@@ -64,7 +92,7 @@ export const DataTab = () => {
           <button onClick={() => {
             setPageNumber(1)
           }}>
-            <i class="fa-solid fa-backward-step"></i>
+            <i className="fa-solid fa-backward-step"></i>
           </button>
           <button className={styles.pageNumIncButton} onClick={() => {
             setPageNumber(pageNumber > 1 ? pageNumber - 1 : 1)
@@ -87,7 +115,12 @@ export const DataTab = () => {
           {allGamesData.map((gameData, gameIndex) => {
             return (
               <GameCard key={gameIndex} data={gameData} index={gameIndex}>
-                <button className={styles.openGameButton}>
+                <button className={styles.openGameButton} onClick={() => {
+                  // some game load function
+                  setGameId(gameData.id)
+                  console.log(currentGame)
+                  // loadChessGame(gameData.id)
+                }}>
                   <i className="fa-solid fa-up-right-from-square"></i>
                 </button>
               </GameCard>
