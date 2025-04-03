@@ -7,38 +7,12 @@ import { useStore } from "./stateManagement/store";
 
 function App() {
   // Importing all necessary state and state setter functions
-  const { playerProfile, pageNumber, gameId } = useStore();
+  const { playerProfile, pageNumber } = useStore();
   const setFirstMoveData = useStore((state) => state.setFirstMoveData);
   const setResultData = useStore((state) => state.setResultData);
   const setTotalGameData = useStore((state) => state.setTotalGameData);
   const setAllGamesData = useStore((state) => state.setAllGamesData);
 
-
-
-  // useEffect(() => {
-  //   const getGameMovesById = async () => {
-  //     const res = await fetch(
-  //       "http://localhost:3000/get-moves?" +
-  //       new URLSearchParams({
-  //         id: gameId,
-  //       }).toString(),
-  //       {
-  //         method: "GET",
-  //       }
-  //     );
-
-  //     const resData = await res.json();
-  //     // console.log("🚀 ~ getData ~ totalGame_resData:", resData);
-  //     setCurrentGame(
-  //       resData.toString()
-  //     );
-  //     console.log(resData)
-  //   };
-
-  //   getGameMovesById()
-  // }, [gameId]
-
-  // )
 
 
   useEffect(() => {

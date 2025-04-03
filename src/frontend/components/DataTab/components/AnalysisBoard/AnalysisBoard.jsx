@@ -67,6 +67,7 @@ export const AnalysisBoard = () => {
     //         setChessBoardPosition(game.fen());
     //     }
     // };
+
     return (
         <div className={styles.chessBoardContainer}>
             {/* <h4>

@@ -10,14 +10,31 @@ import commonStyles from '../common/CommonStyles.module.css';
 
 export const DataTab = () => {
 
-  const { toggleSideModal, playerProfile, allGamesData, totalGameData, pageNumber, gameId, currentGame } = useStore()
+  const { toggleSideModal, playerProfile, allGamesData, totalGameData, pageNumber, gameId, currentGameHeader } = useStore()
   const setPageNumber = useStore((state) => state.setPageNumber);
   const setGameId = useStore((state) => state.setGameId)
-  const setCurrentGame = useStore((state) => state.setCurrentGame)
+  const setCurrentGameMoves = useStore((state) => state.setCurrentGameMoves)
+  const setCurrentGameHeader = useStore((state) => state.setCurrentGameHeader)
   const pageNumberLimit = Math.ceil(totalGameData / 10)
 
-  // const loadChessGame = (id) => {
+  const loadChessGame = (id) => {
 
+  }
+
+  // const calculateGameNumber = (gameIndex) => {
+  //   let gameNumber;
+  //   if (((gameIndex + 1) + (pageNumber - 1) * 10) < 10) {
+  //     gameNumber = "00" + ((gameIndex + 1) + (pageNumber - 1) * 10)
+  //     // gameNumber = 111
+  //   } else {
+  //     if (((gameIndex + 1) + (pageNumber - 1) * 10) < 100) {
+  //       gameNumber = "0" + ((gameIndex + 1) + (pageNumber - 1) * 10)
+  //     } else {
+  //       gameNumber = ((gameIndex + 1) + (pageNumber - 1) * 10)
+  //     }
+  //   }
+
+  //   return gameNumber
   // }
 
   useEffect(() => {
@@ -34,22 +51,17 @@ export const DataTab = () => {
 
       const resData = await res.json();
       // console.log("🚀 ~ getData ~ totalGame_resData:", resData);
-      setCurrentGame(
+      setCurrentGameMoves(
         String(resData[0]["lines"])
       );
+
+      loadChessGame()
     };
 
     getGameMovesById()
   }, [gameId])
 
-  // const fakeData = [
-  //   '001 | Opponent: Magnus Carlsen | Location: Moscow | Event: 41st Festival GM | Year: 2022 | Outcome: Win',
-  //   '002 | Opponent: Magnus Carlsen | Location: Moscow | Event: 41st Festival GM | Year: 2022 | Outcome: Win',
-  //   '003 | Opponent: Magnus Carlsen | Location: Moscow | Event: 41st Festival GM | Year: 2022 | Outcome: Win',
-  //   '004 | Opponent: Magnus Carlsen | Location: Moscow | Event: 41st Festival GM | Year: 2022 | Outcome: Win',
-  //   '005 | Opponent: Magnus Carlsen | Location: Moscow | Event: 41st Festival GM | Year: 2022 | Outcome: Win',
-  //   '006 | Opponent: Magnus Carlsen | Location: Moscow | Event: 41st Festival GM | Year: 2022 | Outcome: Win'
-  // ]
+
 
   return (
     <div className={commonStyles.tabContainer}>
@@ -115,14 +127,17 @@ export const DataTab = () => {
           {allGamesData.map((gameData, gameIndex) => {
             return (
               <GameCard key={gameIndex} data={gameData} index={gameIndex}>
-                <button className={styles.openGameButton} onClick={() => {
+                {/* <button className={styles.openGameButton} onClick={() => {
                   // some game load function
-                  setGameId(gameData.id)
-                  console.log(currentGame)
+                  // setGameId(gameData.id)
+                  // setCurrentGameMoves(currentGameMoves)
+                  // formatCurrentGameHeader(gameIndex, gameData.opponent, gameData.location, gameData.year)
+                  // console.log(currentGameMoves)
+
                   // loadChessGame(gameData.id)
                 }}>
                   <i className="fa-solid fa-up-right-from-square"></i>
-                </button>
+                </button> */}
               </GameCard>
             )
           })}
@@ -130,8 +145,7 @@ export const DataTab = () => {
 
         <div className={styles.boardViewContainer}>
           <div className={styles.gameTitleContainer}>
-            <p className={commonStyles.boldText}>Game 006&nbsp;|</p>
-            <p>&nbsp;Hikaru Nakamura, London, 2021</p>
+            <p>&nbsp;{currentGameHeader}</p>
           </div>
           <div className={styles.chessBoardContainer}>
             <AnalysisBoard>

@@ -21,3 +21,13 @@
     color: #00a6a6;
     cursor: pointer;
 }
+
+.game-card-selected {
+    font-weight: 500;
+    background-color: var(--gray3);
+}
+
+.open-game-button {
+    background: none;
+    border: none;
+}
