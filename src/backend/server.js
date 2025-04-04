@@ -180,3 +180,42 @@ app.get("/outcome", async (req, res, next) => {
   res.send(data);
 
 })
+
+// Result move endpoint
+app.get("/wins-vs-length", async (req, res, next) => {
+  validateFilterParams(req, res, next);
+
+  const data = await sql`SELECT
+        COUNT(*) 
+    FROM
+        game_data
+    WHERE 
+        1=1
+        ${req.query?.player ? sql`AND player like ${req.query.player}` : sql``}
+        ${req.query?.yearStart ? sql`AND year > ${req.query.yearStart}` : sql``}
+        ${req.query?.yearEnd ? sql`AND year < ${req.query.yearEnd}` : sql``}
+        ${req.query?.color ? sql`AND color = ${req.query.color}` : sql``}
+        ${req.query?.opponent
+      ? sql`AND opponent = ${req.query.opponent}`
+      : sql``
+    }
+        ${req.query?.result ? sql`AND result = ${req.query.result}` : sql``}
+        ${req.query?.movesMax ? sql`AND moves < ${req.query.movesMax}` : sql``}
+        ${req.query?.movesMin ? sql`AND moves > ${req.query.movesMin}` : sql``}
+        ${req.query?.player_elo
+      ? sql`AND player_elo > ${req.query.player_elo}`
+      : sql``
+    }
+        ${req.query?.opponent_elo
+      ? sql`AND opponent_elo > ${req.query.opponent_elo}`
+      : sql``
+    }
+        ${req.query?.site ? sql`AND site = ${req.query.site}` : sql``}
+        ${req.query?.event ? sql`AND event = ${req.query.event}` : sql``}
+        `;
+  // console.log("🚀 ~ app.get ~ data:", data);
+
+  res.send(data);
+
+})
+

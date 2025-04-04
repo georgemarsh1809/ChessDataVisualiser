@@ -17,12 +17,12 @@
 .board-view-container {
 
     display: flex;
+    flex-direction: column;
     flex: 1;
     height: 100vh;
     border-left: solid 1px var(--gray4);
-    flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 .game-data-container {
@@ -51,7 +51,9 @@
     display: flex;
     width: 500px;
     font-size: 18px;
-    justify-content: left;
+    margin-bottom: 15px;
+    margin-top: -180px;
+    justify-content: center;
     align-items: flex-start;
 
 }

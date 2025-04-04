@@ -10,58 +10,9 @@ import commonStyles from '../common/CommonStyles.module.css';
 
 export const DataTab = () => {
 
-  const { toggleSideModal, playerProfile, allGamesData, totalGameData, pageNumber, gameId, currentGameHeader } = useStore()
+  const { toggleSideModal, playerProfile, allGamesData, totalGameData, pageNumber, gameId, currentGameHeader, currentGameMoves } = useStore()
   const setPageNumber = useStore((state) => state.setPageNumber);
-  const setGameId = useStore((state) => state.setGameId)
-  const setCurrentGameMoves = useStore((state) => state.setCurrentGameMoves)
-  const setCurrentGameHeader = useStore((state) => state.setCurrentGameHeader)
   const pageNumberLimit = Math.ceil(totalGameData / 10)
-
-  const loadChessGame = (id) => {
-
-  }
-
-  // const calculateGameNumber = (gameIndex) => {
-  //   let gameNumber;
-  //   if (((gameIndex + 1) + (pageNumber - 1) * 10) < 10) {
-  //     gameNumber = "00" + ((gameIndex + 1) + (pageNumber - 1) * 10)
-  //     // gameNumber = 111
-  //   } else {
-  //     if (((gameIndex + 1) + (pageNumber - 1) * 10) < 100) {
-  //       gameNumber = "0" + ((gameIndex + 1) + (pageNumber - 1) * 10)
-  //     } else {
-  //       gameNumber = ((gameIndex + 1) + (pageNumber - 1) * 10)
-  //     }
-  //   }
-
-  //   return gameNumber
-  // }
-
-  useEffect(() => {
-    const getGameMovesById = async () => {
-      const res = await fetch(
-        "http://localhost:3000/get-moves?" +
-        new URLSearchParams({
-          id: gameId,
-        }).toString(),
-        {
-          method: "GET",
-        }
-      );
-
-      const resData = await res.json();
-      // console.log("🚀 ~ getData ~ totalGame_resData:", resData);
-      setCurrentGameMoves(
-        String(resData[0]["lines"])
-      );
-
-      loadChessGame()
-    };
-
-    getGameMovesById()
-  }, [gameId])
-
-
 
   return (
     <div className={commonStyles.tabContainer}>
@@ -98,7 +49,7 @@ export const DataTab = () => {
       </div>
       <div className={styles.yourGamesTitleBar}>
         <div className={styles.yourGamesTitleTextContainer}>
-          Your Games
+          Games
         </div>
         <div className={styles.pageButtonsContainer}>
           <button onClick={() => {
@@ -127,17 +78,7 @@ export const DataTab = () => {
           {allGamesData.map((gameData, gameIndex) => {
             return (
               <GameCard key={gameIndex} data={gameData} index={gameIndex}>
-                {/* <button className={styles.openGameButton} onClick={() => {
-                  // some game load function
-                  // setGameId(gameData.id)
-                  // setCurrentGameMoves(currentGameMoves)
-                  // formatCurrentGameHeader(gameIndex, gameData.opponent, gameData.location, gameData.year)
-                  // console.log(currentGameMoves)
 
-                  // loadChessGame(gameData.id)
-                }}>
-                  <i className="fa-solid fa-up-right-from-square"></i>
-                </button> */}
               </GameCard>
             )
           })}
@@ -148,7 +89,7 @@ export const DataTab = () => {
             <p>&nbsp;{currentGameHeader}</p>
           </div>
           <div className={styles.chessBoardContainer}>
-            <AnalysisBoard>
+            <AnalysisBoard >
 
             </AnalysisBoard>
           </div>

@@ -20,7 +20,7 @@ export const useStore = create((set) => ({
   setTotalGameData: (data) => set({ totalGameData: data }),
   gameId: 1,
   setGameId: (id) => set({ gameId: id }),
-  currentGameMoves: 1,
+  currentGameMoves: "",
   setCurrentGameMoves: (game) => set({ currentGameMoves: game }),
   currentGameHeader: "Click on a game to load the moves",
   setCurrentGameHeader: (newHeader) => set({ currentGameHeader: newHeader }),

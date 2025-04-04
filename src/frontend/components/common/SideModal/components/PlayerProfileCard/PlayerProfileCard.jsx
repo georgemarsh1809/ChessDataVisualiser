@@ -5,7 +5,7 @@ import { useStore } from '../../../../../stateManagement/store';
 export const PlayerProfileCard = (props) => {
 
     const { children, data } = props
-    const { toggleSideModal } = useStore()
+    const { toggleSideModal, pageNumber } = useStore()
     const setPlayerProfile = useStore((state) => state.setPlayerProfile)
     const setPageNumber = useStore((state) => state.setPageNumber)
 
@@ -19,6 +19,7 @@ export const PlayerProfileCard = (props) => {
         <button className={styles.playerProfileCard}
             onClick={
                 () => {
+                    setPageNumber(1)
                     setPlayerProfile(getLastNameFromData(data))
                     setPageNumber(1)
                     toggleSideModal()

@@ -13,10 +13,8 @@ function App() {
   const setTotalGameData = useStore((state) => state.setTotalGameData);
   const setAllGamesData = useStore((state) => state.setAllGamesData);
 
-
-
   useEffect(() => {
-    // API Call for Total Games data
+    // API Call for All Game data
     const getAllGamesData = async () => {
       const res = await fetch(
         "http://localhost:3000/all-game-data?" +
@@ -116,8 +114,31 @@ function App() {
       );
     };
 
+    const getWinsVsLengthData = async () => {
+      const res = await fetch(
+        "http://localhost:3000/wins-vs-length?" +
+        new URLSearchParams({
+          player: playerProfile,
+          movesMax: 60,
+          movesMin: 41,
+          result: "Win"
+        }).toString(),
+        {
+          method: "GET",
+        }
+      );
+      const resData = await res.json();
+      console.log("🚀 ~ winsVsLength ~ resData:", resData);
+      // setResultData(
+      //   resData.map((row) => ({
+      //     name: row.result,
+      //     value: Number(row.count_result),
+      //   }))
+      // );
+    };
 
 
+    getWinsVsLengthData()
     getTotalGamesData();
     getOutcomeData();
     getFirstMoveData();

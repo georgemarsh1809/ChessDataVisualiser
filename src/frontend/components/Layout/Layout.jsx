@@ -5,7 +5,7 @@ import { useStore } from "../../stateManagement/store";
 
 export const Layout = () => {
 
-  const { tab, setTab } = useStore()
+  const { tab, setTab, setPageNumber, setCurrentGameMoves, setCurrentGameHeader } = useStore()
 
   return (
     <>
@@ -15,6 +15,9 @@ export const Layout = () => {
             <i className="fa-regular fa-chess-queen"></i>
             <NavLink to="/" onClick={() => {
               setTab("dashboard")
+              setPageNumber(1)
+              setCurrentGameMoves("")
+              setCurrentGameHeader("Click on a game to load the moves")
             }}>
               <button className={`${styles.dashboardTabButton} ${tab === "dashboard" ? styles.selectedTab : ""} `} >
                 <p>Dashboard</p>

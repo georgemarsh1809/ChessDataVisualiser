@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from "./GameCard.module.css";
 import { useStore } from '../../../../stateManagement/store';
 
 export const GameCard = (props) => {
 
-    const { children, data, index } = props
+    const { data, index } = props
 
-    const { currentGameMoves, pageNumber } = useStore()
+    const { currentGameMoves, pageNumber, gameId } = useStore()
     const setGameId = useStore((state) => state.setGameId)
     const setCurrentGameMoves = useStore((state) => state.setCurrentGameMoves)
     const setCurrentGameHeader = useStore((state) => state.setCurrentGameHeader)
@@ -16,7 +16,7 @@ export const GameCard = (props) => {
     const event = data["event"]
     const year = data["year"]
     const result = data["result"]
-    const id = data["id"]
+    // const id = data["id"]
     const gameIndex = index
     // ${gameCardSelected == ? styles.gameCardSelected : ""}
 
@@ -40,19 +40,38 @@ export const GameCard = (props) => {
         setCurrentGameHeader("Game " + (calculateGameNumber(index)) + " | " + opp + ", " + location + ", " + year)
     }
 
+    useEffect(() => {
+        const getGameMovesById = async () => {
+            const res = await fetch(
+                "http://localhost:3000/get-moves?" +
+                new URLSearchParams({
+                    id: gameId,
+                }).toString(),
+                {
+                    method: "GET",
+                }
+            );
+
+            const resData = await res.json();
+            // console.log("🚀 ~ getData ~ totalGame_resData:", resData);
+            setCurrentGameMoves(
+                String(resData[0]["lines"])
+            );
+            console.log(String(resData[0]["lines"]))
+
+        };
+        getGameMovesById()
+    }, [gameId])
+
+
     return (
         <div className={`${styles.gameCard} `}>
             {/* <p>{JSON.stringify(data)}</p> */}
             <p>{calculateGameNumber(gameIndex)} | Opponent: {opponent} | Location: {location} | Event: {event} | Year: {year} | Result: {result}</p>
-            {children}
             <button className={styles.openGameButton} onClick={() => {
-                // some game load function
                 setGameId(data.id)
-                setCurrentGameMoves(currentGameMoves)
                 formatCurrentGameHeader(gameIndex, data.opponent, data.location, data.year)
-                console.log(currentGameMoves)
-
-                // loadChessGame(gameData.id)
+                // console.log(currentGameMoves)
             }}>
                 <i className="fa-solid fa-up-right-from-square"></i>
             </button>
