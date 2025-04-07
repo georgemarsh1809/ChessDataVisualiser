@@ -93,15 +93,7 @@ export const DataTab = () => {
 
             </AnalysisBoard>
           </div>
-          <div className={styles.moveCounterContainer}>
-            <button className={styles.prevMoveButton}>
-              <i className="fa-solid fa-chevron-left" />
-            </button>
-            <p className={styles.moveCounter}>Move: 0</p>
-            <button className={styles.nextMoveButton}>
-              <i className="fa-solid fa-chevron-right" />
-            </button>
-          </div>
+
         </div>
       </div>
     </div>

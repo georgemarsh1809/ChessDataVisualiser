@@ -25,7 +25,11 @@ export const useStore = create((set) => ({
   currentGameHeader: "Click on a game to load the moves",
   setCurrentGameHeader: (newHeader) => set({ currentGameHeader: newHeader }),
   currentGameNumber: 0,
-  setCurrentGameNumber: (newNumber) => set({ currentGameNumber: newNumber })
+  setCurrentGameNumber: (newNumber) => set({ currentGameNumber: newNumber }),
+  moveNumber: 0,
+  setMoveNumber: (nextMoveNumber) => set({ moveNumber: nextMoveNumber }),
+  currentPosition: "",
+  setCurrentPosition: (newPosition) => set({ currentPosition: newPosition })
 
 
 }));

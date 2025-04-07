@@ -6,7 +6,7 @@ export const GameCard = (props) => {
 
     const { data, index } = props
 
-    const { currentGameMoves, pageNumber, gameId } = useStore()
+    const { currentGameMoves, pageNumber, gameId, setMoveNumber, setCurrentPosition } = useStore()
     const setGameId = useStore((state) => state.setGameId)
     const setCurrentGameMoves = useStore((state) => state.setCurrentGameMoves)
     const setCurrentGameHeader = useStore((state) => state.setCurrentGameHeader)
@@ -71,6 +71,8 @@ export const GameCard = (props) => {
             <button className={styles.openGameButton} onClick={() => {
                 setGameId(data.id)
                 formatCurrentGameHeader(gameIndex, data.opponent, data.location, data.year)
+                setCurrentPosition("")
+                setMoveNumber(0)
                 // console.log(currentGameMoves)
             }}>
                 <i className="fa-solid fa-up-right-from-square"></i>

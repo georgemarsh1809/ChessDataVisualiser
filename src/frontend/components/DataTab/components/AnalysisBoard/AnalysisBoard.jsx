@@ -10,28 +10,40 @@ export const AnalysisBoard = () => {
 
     // const engine = useMemo(() => new Fish.Engine(), []);
     // const game = useMemo(() => new Chess(), []);
-    const { currentGameMoves } = useStore();
+    const { currentGameMoves, moveNumber, setMoveNumber, currentPosition, setCurrentPosition } = useStore();
     const [game, setGame] = useState(new Chess());
     const [chessBoardPosition, setChessBoardPosition] = useState(game.fen());
     const [positionEvaluation, setPositionEvaluation] = useState(0);
 
+    let splitPgn = currentGameMoves.split(" ")
 
     useEffect(() => {
 
         try {
-            game.loadPgn(currentGameMoves)
+            game.loadPgn(splitPgn)
 
         } catch (err) {
             console.log(err)
         }
 
-        const moveHandler = (direction) => {
+    }, [currentGameMoves])
 
+
+
+
+    useEffect(() => {
+        const newPgn = splitPgn.slice(0, 3 * moveNumber).join(' ')
+        console.log(newPgn)
+        setCurrentPosition(newPgn)
+
+        try {
+            game.loadPgn(newPgn)
+
+        } catch (err) {
+            console.log(err)
         }
 
-
-
-    }, [currentGameMoves])
+    }, [moveNumber])
 
 
     // loadGame()
@@ -45,10 +57,26 @@ export const AnalysisBoard = () => {
             />
             <button onClick={() => {
                 game.reset();
-                setChessBoardPosition(game.fen());
+                setChessBoardPosition(game.fen(game.loadPgn(currentPosition)));
+                setMoveNumber(0)
             }}>
-                reset
+                Reset
             </button>
+            <div className={styles.moveCounterContainer}>
+                <button className={styles.prevMoveButton} onClick={() => {
+                    moveNumber > 1 ? setMoveNumber(moveNumber - 1) : setMoveNumber(1)
+                }
+                }>
+                    <i className="fa-solid fa-chevron-left" />
+                </button>
+                <p className={styles.moveCounter}>Move: {moveNumber}</p>
+                <button className={styles.nextMoveButton} onClick={() => {
+                    setMoveNumber(moveNumber + 1)
+                }
+                }>
+                    <i className="fa-solid fa-chevron-right" />
+                </button>
+            </div>
 
         </div>
     );
