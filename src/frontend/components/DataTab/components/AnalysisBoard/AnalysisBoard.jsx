@@ -17,16 +17,16 @@ export const AnalysisBoard = () => {
 
     let splitPgn = currentGameMoves.split(" ")
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        try {
-            game.loadPgn(splitPgn)
+    //     try {
+    //         game.loadPgn(splitPgn)
 
-        } catch (err) {
-            console.log(err)
-        }
+    //     } catch (err) {
+    //         console.log(err)
+    //     }
 
-    }, [currentGameMoves])
+    // }, [currentGameMoves])
 
 
 
