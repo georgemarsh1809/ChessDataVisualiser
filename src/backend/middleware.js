@@ -3,10 +3,6 @@ import { HTPP_STATUS_CODES } from "./constants.js";
 export const validateFilterParams = (req, res, next) => {
   const errors = [];
 
-  console.log(
-    "🚀 ~ validateFilterParams ~ req.query?.player:",
-    typeof req.query?.player
-  );
   if (req.query?.player && typeof req.query?.player !== "string") {
     errors.push("Invalid player");
   }

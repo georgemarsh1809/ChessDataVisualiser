@@ -6,8 +6,8 @@ import postgres from "postgres";
 const sql = postgres({
   db: "chess",
   // commented out to work on henry's machine
-  user: "postgres",
-  password: "Drum&Bass420!",
+  // user: "postgres",
+  // password: "Drum&Bass420!",
 }); // will use psql environment variables
 
 export default sql;

@@ -1,18 +1,48 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from "react";
 import { Chessboard } from "react-chessboard";
 import { Chess } from "chess.js";
-import { SideModal } from '../common/SideModal/SideModal';
-import { GameCard } from './components/GameCard/GameCard';
-import { AnalysisBoard } from './components/AnalysisBoard/AnalysisBoard';
-import { useStore } from '../../stateManagement/store';
-import styles from './DataTab.module.css'
-import commonStyles from '../common/CommonStyles.module.css';
+import { SideModal } from "../common/SideModal/SideModal";
+import { GameCard } from "./components/GameCard/GameCard";
+import { AnalysisBoard } from "./components/AnalysisBoard/AnalysisBoard";
+import { useStore } from "../../stateManagement/store";
+import styles from "./DataTab.module.css";
+import commonStyles from "../common/CommonStyles.module.css";
 
 export const DataTab = () => {
-
-  const { toggleSideModal, playerProfile, allGamesData, totalGameData, pageNumber, gameId, currentGameHeader, currentGameMoves } = useStore()
+  const {
+    toggleSideModal,
+    playerProfile,
+    allGamesData,
+    totalGameData,
+    pageNumber,
+    gameId,
+    currentGameHeader,
+    currentGameMoves,
+    setCurrentGameMoves,
+  } = useStore();
   const setPageNumber = useStore((state) => state.setPageNumber);
-  const pageNumberLimit = Math.ceil(totalGameData / 10)
+  const pageNumberLimit = Math.ceil(totalGameData / 10);
+
+  useEffect(() => {
+    const getGameMovesById = async () => {
+      const res = await fetch(
+        "http://localhost:3000/data/get-moves?" +
+          new URLSearchParams({
+            id: gameId,
+          }).toString(),
+        {
+          method: "GET",
+        }
+      );
+
+      const resData = await res.json();
+      // console.log("🚀 ~ getData ~ totalGame_resData:", resData);
+      setCurrentGameMoves(String(resData[0]["lines"]));
+      console.log(String(resData[0]["lines"]));
+    };
+
+    getGameMovesById();
+  }, [gameId, setCurrentGameMoves]);
 
   return (
     <div className={commonStyles.tabContainer}>
@@ -23,9 +53,7 @@ export const DataTab = () => {
             <i className="fa-solid fa-chevron-right"></i>
           </button>
           <div className={commonStyles.tabHeaderTitleText}>
-            <h2>
-              {playerProfile}'s Data |
-            </h2>
+            <h2>{playerProfile}'s Data |</h2>
             <p>&nbsp; {totalGameData} games</p>
           </div>
         </div>
@@ -48,39 +76,45 @@ export const DataTab = () => {
         </div>
       </div>
       <div className={styles.yourGamesTitleBar}>
-        <div className={styles.yourGamesTitleTextContainer}>
-          Games
-        </div>
+        <div className={styles.yourGamesTitleTextContainer}>Games</div>
         <div className={styles.pageButtonsContainer}>
-          <button onClick={() => {
-            setPageNumber(1)
-          }}>
+          <button
+            onClick={() => {
+              setPageNumber(1);
+            }}
+          >
             <i className="fa-solid fa-backward-step"></i>
           </button>
-          <button className={styles.pageNumIncButton} onClick={() => {
-            setPageNumber(pageNumber > 1 ? pageNumber - 1 : 1)
-          }
-          }>
+          <button
+            className={styles.pageNumIncButton}
+            onClick={() => {
+              setPageNumber(pageNumber > 1 ? pageNumber - 1 : 1);
+            }}
+          >
             <i className="fa-solid fa-chevron-left" />
           </button>
-          <p>Page: {pageNumber} / {pageNumberLimit}</p>
-          <button onClick={() => {
-            setPageNumber(pageNumber + 1)
-          }
-          }>
+          <p>
+            Page: {pageNumber} / {pageNumberLimit}
+          </p>
+          <button
+            onClick={() => {
+              setPageNumber(pageNumber + 1);
+            }}
+          >
             <i className="fa-solid fa-chevron-right" />
           </button>
         </div>
-
       </div>
       <div className={styles.gameDataContainer}>
         <div className={styles.gameListContainer}>
           {allGamesData.map((gameData, gameIndex) => {
             return (
-              <GameCard key={gameIndex} data={gameData} index={gameIndex}>
-
-              </GameCard>
-            )
+              <GameCard
+                key={gameIndex}
+                data={gameData}
+                index={gameIndex}
+              ></GameCard>
+            );
           })}
         </div>
 
@@ -89,13 +123,10 @@ export const DataTab = () => {
             <p>&nbsp;{currentGameHeader}</p>
           </div>
           <div className={styles.chessBoardContainer}>
-            <AnalysisBoard >
-
-            </AnalysisBoard>
+            <AnalysisBoard></AnalysisBoard>
           </div>
-
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
