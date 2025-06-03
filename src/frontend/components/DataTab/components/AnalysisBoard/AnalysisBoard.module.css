@@ -18,7 +18,6 @@
 }
 
 .move-counter-container {
-    padding: 10px;
     display: flex;
     align-items: center;
     gap: 0.2rem;

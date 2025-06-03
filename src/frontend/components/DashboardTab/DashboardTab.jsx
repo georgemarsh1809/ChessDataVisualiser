@@ -5,12 +5,18 @@ import commonStyles from "../common/CommonStyles.module.css";
 import styles from "./DashboardTab.module.css";
 import { Graph } from "./components/Graph/Graph";
 import { PieChart } from "./components/PieChart";
+import { BarChart } from "./components/BarChart/BarChart";
 
 export const DashboardTab = () => {
-  const { toggleSideModal, playerProfile, totalGameData, firstMoveData, resultData } = useStore();
+  const {
+    toggleSideModal,
+    playerProfile,
+    totalGameData,
+    firstMoveData,
+    resultData,
+    winVsLengthData
 
-  console.log("🚀 ~ DashboardTab ~ firstMoveData:", firstMoveData);
-  console.log("🚀 ~ DashboardTab ~ totalGameData:", totalGameData);
+  } = useStore();
 
   return (
     <div className={commonStyles.tabContainer}>
@@ -45,12 +51,11 @@ export const DashboardTab = () => {
       </div>
 
       <div className={styles.graphViewContainer}>
-        {/* <Graph /> */}
         <div className={styles.graphContainer}>
           <PieChart data={firstMoveData} title={"First Move"} />
         </div>
         <div className={styles.graphContainer}>
-          <Graph />
+          <BarChart data={winVsLengthData} dataKey='winPercentage' title="Win Percentage VS Game Length" />
         </div>
         <div className={styles.graphContainer}>
           <PieChart data={resultData} title={"Outcome"} />

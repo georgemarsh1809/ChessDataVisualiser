@@ -21,7 +21,6 @@ async function createDbTables() {
         PRIMARY KEY (id)
     );`;
 
-  // game_data location on george's machine: 'C:/Users/Public/game_data.csv'
   await sql`COPY game_data (player,
     color,
     opponent,

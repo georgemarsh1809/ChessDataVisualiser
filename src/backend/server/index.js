@@ -14,8 +14,6 @@ app.use(
 );
 
 app.listen(port, () => {
-  // Runs when the server starts (the file is run)
-  console.log("Running on port 3000");
 });
 
 app.get("/test", async (req, res) => {

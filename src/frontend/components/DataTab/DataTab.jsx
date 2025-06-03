@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Chessboard } from "react-chessboard";
 import { Chess } from "chess.js";
 import { SideModal } from "../common/SideModal/SideModal";
 import { GameCard } from "./components/GameCard/GameCard";
@@ -17,7 +16,6 @@ export const DataTab = () => {
     pageNumber,
     gameId,
     currentGameHeader,
-    currentGameMoves,
     setCurrentGameMoves,
   } = useStore();
   const setPageNumber = useStore((state) => state.setPageNumber);
@@ -27,18 +25,16 @@ export const DataTab = () => {
     const getGameMovesById = async () => {
       const res = await fetch(
         "http://localhost:3000/data/get-moves?" +
-          new URLSearchParams({
-            id: gameId,
-          }).toString(),
+        new URLSearchParams({
+          id: gameId,
+        }).toString(),
         {
           method: "GET",
         }
       );
 
       const resData = await res.json();
-      // console.log("🚀 ~ getData ~ totalGame_resData:", resData);
       setCurrentGameMoves(String(resData[0]["lines"]));
-      console.log(String(resData[0]["lines"]));
     };
 
     getGameMovesById();
