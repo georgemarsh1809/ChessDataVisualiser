@@ -109,7 +109,7 @@ dashboardRouter.get('/wins-vs-year', async (req, res) => {
         from
             game_data
         where
-            player like 'Tal'
+            player like ${player}
         group by
             year
         order by
