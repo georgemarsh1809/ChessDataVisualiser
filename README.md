@@ -40,7 +40,6 @@ data pass data as a param into graph react component
 <!-- - ! win percentage vs game length (move count, 0-20, 21-40, 41-60, 61-80, 81-100, 100+) -->
 
 -   ! games played vs year
--   ! win % vs year
 -   win percentage vs opponent elo // opponent elo vs result (scatter graph)
 -   avg move count vs result
 -   games played vs event
